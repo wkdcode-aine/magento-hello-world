@@ -1,0 +1,8 @@
+<?php
+/** @var \wkdcode\GarageModule\Block\Hello $block */
+?>
+<?php foreach ($block->getItems() as $item): ?>
+<p>
+<?php echo $item->getName(); ?>: <?php echo $item->getType(); ?>
+</p>
+<?php endforeach; ?>
