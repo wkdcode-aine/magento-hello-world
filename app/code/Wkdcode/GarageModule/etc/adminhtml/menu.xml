@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Wkdcode_GarageModule::wkdcode" title="Wkdcode"
+             module="Wkdcode_GarageModule" resource="Wkdcode_GarageModule::wkdcode"
+             translate="title" sortOrder="900" action="wkdcode"/>
+    </menu>
+</config>

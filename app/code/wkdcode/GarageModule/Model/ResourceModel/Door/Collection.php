@@ -1,10 +1,10 @@
 <?php
 
-namespace wkdcode\GarageModule\Model\ResourceModel\Door;
+namespace Wkdcode\GarageModule\Model\ResourceModel\Door;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use wkdcode\GarageModule\Model\Door;
-use wkdcode\GarageModule\Model\ResourceModel\Door as DoorResource;
+use Wkdcode\GarageModule\Model\Door;
+use Wkdcode\GarageModule\Model\ResourceModel\Door as DoorResource;
 
 class Collection extends AbstractCollection
 {

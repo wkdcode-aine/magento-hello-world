@@ -1,6 +1,6 @@
 <?php
 
-namespace wkdcode\GarageModule\Setup;
+namespace Wkdcode\GarageModule\Setup;
 
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\UpgradeSchemaInterface;

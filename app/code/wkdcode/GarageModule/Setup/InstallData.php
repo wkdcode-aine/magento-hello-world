@@ -1,6 +1,6 @@
 <?php
 
-namespace wkdcode\GarageModule\Setup;
+namespace Wkdcode\GarageModule\Setup;
 
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;

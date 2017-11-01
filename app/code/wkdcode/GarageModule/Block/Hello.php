@@ -1,10 +1,10 @@
 <?php
 
-namespace wkdcode\GarageModule\Block;
+namespace Wkdcode\GarageModule\Block;
 
 use Magento\Framework\View\Element\Template;
-use wkdcode\GarageModule\Model\ResourceModel\Door\Collection;
-use wkdcode\GarageModule\Model\ResourceModel\Door\CollectionFactory;
+use Wkdcode\GarageModule\Model\ResourceModel\Door\Collection;
+use Wkdcode\GarageModule\Model\ResourceModel\Door\CollectionFactory;
 
 class Hello extends Template
 {
@@ -20,7 +20,7 @@ class Hello extends Template
     }
 
     /**
-     * @return \wkdcode\GarageModule\Model\Door[]
+     * @return \Wkdcode\GarageModule\Model\Door[]
      */
     public function getItems()
     {

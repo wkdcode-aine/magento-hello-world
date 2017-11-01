@@ -1,6 +1,6 @@
 <?php
 
-namespace wkdcode\GarageModule\Model\ResourceModel;
+namespace Wkdcode\GarageModule\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 

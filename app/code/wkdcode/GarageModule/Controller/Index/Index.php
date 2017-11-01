@@ -1,6 +1,6 @@
 <?php
 
-namespace wkdcode\GarageModule\Controller\Index;
+namespace Wkdcode\GarageModule\Controller\Index;
 
 use Magento\Framework\Controller\ResultFactory;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace wkdcode\GarageModule\Console\Command;
+namespace Wkdcode\GarageModule\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use wkdcode\GarageModule\Model\DoorFactory;
+use Wkdcode\GarageModule\Model\DoorFactory;
 use Magento\Framework\Console\Cli;
 
 class AddDoor extends Command

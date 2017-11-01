@@ -3,7 +3,7 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
            <argument name="commands" xsi:type="array">
-                <item name="wkdcodeAddDoor" xsi:type="object">wkdcode\GarageModule\Console\Command\AddDoor</item>
+                <item name="wkdcodeAddDoor" xsi:type="object">Wkdcode\GarageModule\Console\Command\AddDoor</item>
             </argument>
         </arguments>
     </type>
