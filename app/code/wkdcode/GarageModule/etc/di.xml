@@ -37,4 +37,7 @@
             <argument name="logger" xsi:type="object">WkdcodeLogger</argument>
         </arguments>
     </type>
+    <type name="Wkdcode\GarageModule\Console\Command\AddDoor">
+        <plugin name="console_logging" type="Wkdcode\GarageModule\Plugin\Logger"/>
+    </type>
 </config>
