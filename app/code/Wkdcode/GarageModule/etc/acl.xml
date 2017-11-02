@@ -3,7 +3,8 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Wkdcode_GarageModule::wkdcode" title="Wkdcode" translate="title" sortOrder="900"/>
+                <resource id="Wkdcode_GarageModule::wkdcode" title="Wkdcode"
+                          translate="title" sortOrder="900"/>
             </resource>
         </resources>
     </acl>

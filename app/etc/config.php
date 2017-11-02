@@ -108,6 +108,6 @@ return array (
     'Magento_CatalogWidget' => 1,
     'Magento_Wishlist' => 1,
     'Shopial_Facebook' => 1,
-    'wkdcode_GarageModule' => 1,
+    'Wkdcode_GarageModule' => 1,
   ),
 );
