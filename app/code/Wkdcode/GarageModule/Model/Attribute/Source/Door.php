@@ -3,25 +3,21 @@
 
     use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
 
+    use Wkdcode\GarageModule\Model\ResourceModel\Door\Collection as DoorCollection;
+
     class Door extends AbstractSource
     {
+        private $doorCollection;
+
+        public function __construct(DoorCollection $garageDoorCollection){
+            $this->doorCollection = $garageDoorCollection;
+        }
         /**
          * Get all options
          * @return array
          */
         public function getAllOptions()
         {
-            return [];
-            if (!$this->_options) {
-                $this->_options = [
-                    ['label' => __('Cotton'), 'value' => 'cotton'],
-                    ['label' => __('Leather'), 'value' => 'leather'],
-                    ['label' => __('Silk'), 'value' => 'silk'],
-                    ['label' => __('Denim'), 'value' => 'denim'],
-                    ['label' => __('Fur'), 'value' => 'fur'],
-                    ['label' => __('Wool'), 'value' => 'wool'],
-                ];
-            }
-            return $this->_options;
+            return $this->doorCollection->toOptionArray();
         }
     }

@@ -54,27 +54,30 @@ class UpgradeData implements UpgradeDataInterface
 
         if( version_compare($context->getVersion(), '1.0.3', '<') )
         {
-            $eavSetup = $this->eavSetupFactory->create();
+            $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
             $eavSetup->addAttribute(
                 \Magento\Catalog\Model\Product::ENTITY,
                 'garage_door_id',
                 [
-                    'group' => 'General',
                     'type' => 'int',
-                    'label' => 'Garage Door',
-                    'input' => 'select',
-                    'source' => 'Wkdcode\GarageModule\Model\Attribute\Source\Door',
-                    'frontend' => 'Wkdcode\GarageModule\Model\Attribute\Frontend\Door',
-                    'backend' => 'Wkdcode\GarageModule\Model\Attribute\Backend\Door',
-                    'required' => true,
-                    'sort_order' => 5,
-                    'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
-                    'is_used_in_grid' => false,
-                    'is_visible_in_grid' => false,
-                    'is_filterable_in_grid' => false,
-                    'visible' => true,
-                    'is_html_allowed_on_front' => true,
-                    'visible_on_front' => true
+    				'backend' => '',
+    				'frontend' => '',
+    				'label' => 'Garage Door',
+    				'input' => 'select',
+    				'class' => '',
+    				'source' => 'Wkdcode\GarageModule\Model\Attribute\Source\Door',
+    				'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+    				'visible' => true,
+    				'required' => true,
+    				'user_defined' => false,
+    				'default' => '',
+    				'searchable' => false,
+    				'filterable' => false,
+    				'comparable' => false,
+    				'visible_on_front' => false,
+    				'used_in_product_listing' => true,
+    				'unique' => false,
+    				'apply_to' => ''
                 ]
             );
         }
