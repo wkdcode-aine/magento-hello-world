@@ -24,7 +24,6 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="update_url" xsi:type="url" path="mui/index/render"/>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
                 </item>
             </argument>
         </argument>
@@ -36,7 +35,7 @@
         <filterSearch name="fulltext"/>
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
-        <frontendLink name="frontend_link"/>
+        <!-- <frontendLink name="frontend_link"/> -->
     </listingToolbar>
     <columns name="wkdcode_doors_columns">
         <argument name="data" xsi:type="array">
