@@ -6,12 +6,12 @@
         <remove id="Magento_Reports::report" />
         <remove id="Magento_Marketplace::partners" />
 
-        <update id="Magento_Catalog::catalog" title="Products" translate="title" sortOrder="20" action="catalog/product/" />
+        <!-- <update id="Magento_Catalog::catalog" title="Products" translate="title" sortOrder="20" action="catalog/product/" />
         <remove id="Magento_Catalog::catalog_products" />
         <remove id="Magento_Catalog::catalog_categories" />
         <remove id="Magento_Catalog::catalog_attributes_attributes" />
         <remove id="Magento_Catalog::catalog_attributes_sets" />
-        <remove id="Magento_Catalog::inventory" />
+        <remove id="Magento_Catalog::inventory" /> -->
 
         <update id="Magento_Sales::sales" title="Orders" translate="title" sortOrder="15" action="sales/order" />
         <remove id="Magento_Sales::sales_operation" />
