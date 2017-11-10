@@ -3,6 +3,7 @@
     <module name="Wkdcode_GarageModule" setup_version="1.0.3">
         <sequence>
             <module name="Magento_Catalog"/>
+            <module name="Magento_CatalogInventory"/>
             <module name="Magento_Customer"/>
             <module name="Magento_Sales"/>
         </sequence>
