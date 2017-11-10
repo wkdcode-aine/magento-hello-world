@@ -9,6 +9,10 @@
     </type>
     <preference type="Wkdcode\GarageModule\Model\Door" for="Wkdcode\GarageModule\Api\Data\DoorInterface"/>
     <preference type="Wkdcode\GarageModule\Model\DoorRepository" for="Wkdcode\GarageModule\Api\DoorRepositoryInterface"/>
+
+    <preference type="Magento\Catalog\Model\Category" for="Wkdcode\GarageModule\Api\Data\CategoryInterface"/>
+    <preference type="Wkdcode\GarageModule\Model\CategoryWordpressList" for="Wkdcode\GarageModule\Api\CategoryRepositoryInterface"/>
+
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

@@ -6,4 +6,10 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <route url="/V1/categories/wordpress" method="GET">
+        <service class="Wkdcode\GarageModule\Api\CategoryRepositoryInterface" method="getWordpressList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
