@@ -19,7 +19,12 @@
                     <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\Downloadable</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
+                <item name="custom-options" xsi:type="array">
+                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\CustomOptions</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
             </argument>
         </arguments>
     </virtualType>
+
 </config>
