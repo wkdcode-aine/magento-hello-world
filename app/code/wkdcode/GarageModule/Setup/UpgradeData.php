@@ -82,6 +82,36 @@ class UpgradeData implements UpgradeDataInterface
             );
         }
 
+        if( version_compare($context->getVersion(), '1.0.4', '<') )
+        {
+            $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+            $eavSetup->addAttribute(
+                \Magento\Catalog\Model\Product::ENTITY,
+                'icon_id',
+                [
+                    'type' => 'int',
+    				'backend' => '',
+    				'frontend' => '',
+    				'label' => 'Icon',
+    				'input' => 'checkbox',
+    				'class' => '',
+    				'source' => 'Wkdcode\GarageModule\Model\Attribute\Source\Icon',
+    				'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+    				'visible' => true,
+    				'required' => true,
+    				'user_defined' => false,
+    				'default' => '',
+    				'searchable' => false,
+    				'filterable' => false,
+    				'comparable' => false,
+    				'visible_on_front' => false,
+    				'used_in_product_listing' => true,
+    				'unique' => false,
+    				'apply_to' => ''
+                ]
+            );
+        }
+
         $setup->endSetup();
     }
 }

@@ -11,7 +11,7 @@
                 <item name="name" xsi:type="string">add</item>
                 <item name="label" xsi:type="string" translate="true">Add Door</item>
                 <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/door/new</item>
+                <item name="url" xsi:type="string">*/door/add</item>
             </item>
         </item>
     </argument>
@@ -27,6 +27,11 @@
                 </item>
             </argument>
         </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
     </dataSource>
     <listingToolbar name="listing_top">
         <bookmark name="bookmarks"/>
@@ -35,6 +40,20 @@
         <filterSearch name="fulltext"/>
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
+
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="wkdcode/door/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
         <!-- <frontendLink name="frontend_link"/> -->
     </listingToolbar>
     <columns name="wkdcode_doors_columns">
@@ -83,5 +102,11 @@
                 </item>
             </argument>
         </column>
+
+        <actionsColumn name="actions" class="Wkdcode\GarageModule\Ui\Component\Listing\Columns\DoorActions">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>

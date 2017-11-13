@@ -63,6 +63,54 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        if( version_compare($context->getVersion(), '1.0.4', '<')) {
+            $connection = $setup->getConnection();
+
+            $connection->addColumn(
+                $setup->getTable('garage_door'),
+                'created_at',
+                Table::TYPE_TIMESTAMP,
+                null,
+                [],
+                'Created At'
+            );
+            $connection->addColumn(
+                $setup->getTable('garage_door'),
+                'updated_at',
+                Table::TYPE_TIMESTAMP,
+                null,
+                [],
+                'Updated At'
+            );
+            $connection->addColumn(
+                $setup->getTable('garage_motor'),
+                'created_at',
+                Table::TYPE_TIMESTAMP,
+                null,
+                [],
+                'Created At'
+            );
+            $connection->addColumn(
+                $setup->getTable('garage_motor'),
+                'updated_at',
+                Table::TYPE_TIMESTAMP,
+                null,
+                [],
+                'Updated At'
+            );
+        }
+
+        if( version_compare($context->getVersion(), '1.0.5', '<')) {
+            $setup->getConnection()->addColumn(
+                $setup->getTable('catalog_product_option_type_value'),
+                'conditional_on',
+                Table::TYPE_INTEGER,
+                null,
+                [],
+                'Conditional On'
+            );
+        }
+
         $setup->endSetup();
     }
 }

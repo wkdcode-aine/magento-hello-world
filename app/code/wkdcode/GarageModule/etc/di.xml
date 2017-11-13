@@ -36,6 +36,7 @@
             </argument>
         </arguments>
     </virtualType>
+
     <type name="Wkdcode\GarageModule\Observer\Logger">
         <arguments>
             <argument name="logger" xsi:type="object">WkdcodeLogger</argument>
