@@ -13,6 +13,9 @@
     <preference type="Magento\Catalog\Model\Category" for="Wkdcode\GarageModule\Api\Data\CategoryInterface"/>
     <preference type="Wkdcode\GarageModule\Model\CategoryWordpressList" for="Wkdcode\GarageModule\Api\CategoryRepositoryInterface"/>
 
+    <preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="Wkdcode\GarageModule\Block\Product\View\Options\Type\Select" />
+    <preference for="Magento\Catalog\Model\Product\Option\Value" type="Wkdcode\GarageModule\Model\Product\Option\Value" />
+
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
