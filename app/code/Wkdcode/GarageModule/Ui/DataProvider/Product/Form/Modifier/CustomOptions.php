@@ -122,7 +122,10 @@
                             ),
                             static::FIELD_PRICE_NAME => $this->getPriceFieldConfigForSelectType(20),
                             static::FIELD_PRICE_TYPE_NAME => $this->getPriceTypeFieldConfig(30, ['fit' => true]),
-                            static::FIELD_CONDITIONAL_ON_NAME => $this->getConditionalFieldConfig(35),
+                            static::FIELD_CONDITIONAL_ON_NAME => $this->getConditionalFieldConfig(
+                                35,
+                                $this->locator->getProduct()->getStoreId() == 0 ? false : true
+                            ),
                             static::FIELD_SKU_NAME => $this->getSkuFieldConfig(40),
                             static::FIELD_SORT_ORDER_NAME => $this->getPositionFieldConfig(50),
                             static::FIELD_IS_DELETE => $this->getIsDeleteFieldConfig(60)
@@ -136,10 +139,11 @@
          * Get config for "SKU" field
          *
          * @param int $sortOrder
+         * @param boolean $disabled
          * @return array
          * @since 101.0.0
          */
-        protected function getConditionalFieldConfig($sortOrder)
+        protected function getConditionalFieldConfig($sortOrder, $disabled)
         {
             return [
                 'arguments' => [
@@ -151,7 +155,8 @@
                             'dataScope' => static::FIELD_CONDITIONAL_ON_NAME,
                             'dataType' => Text::NAME,
                             'options' => $this->productOptionsOptions->toOptionArray(),
-                            'sortOrder' => $sortOrder
+                            'sortOrder' => $sortOrder,
+                            'disabled' => $disabled
                         ],
                     ],
                 ],

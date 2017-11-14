@@ -8,12 +8,18 @@ namespace Wkdcode\GarageModule\Model\Config\Source\Product\Options;
 class Options implements \Magento\Framework\Option\ArrayInterface
 {
     /**
+     * [private description]
+     * @var [type]
+     */
+    private $optionCollection;
+
+    /**
      *
      */
     public function __construct(
-
+        \Magento\Catalog\Model\ResourceModel\Product\Option\Collection $optionCollection
     ) {
-
+        $this->optionCollection = $optionCollection;
     }
 
     /**
@@ -23,20 +29,13 @@ class Options implements \Magento\Framework\Option\ArrayInterface
     {
         $groups = [['value' => '', 'label' => __('-- Please select --')]];
 
-        // foreach($this->_productOptionConfig->getAll() as $option) {
-        //     $types = [];
-        //     foreach ($option['types'] as $type) {
-        //         $types[] = ['label' => __($type['label']), 'value' => $type['name']];
-        //     }
-        //     if (count($types)) {
-        //         $groups[] = ['label' => __($option['label']), 'value' => $types, 'optgroup-name' => $option['label']];
-        //     }
-        // }
-        //
+        foreach($this->optionCollection->addTitleToResult(0)->addValuesToResult(0)->getItems() as $item) {
+            $types = [];
 
+            foreach($item->getValues() as $value) $types[] = ['label' => $value->getData('title'), 'value' => $value->getData('option_type_id')];
 
-        $groups[] = ['label' => 'Canopy', 'value' => 7];
-        $groups[] = ['value' => 8, 'label' => 'Retractable'];
+            if( count($types) > 0 )  $groups[] = ['label' => __($item->getData('title')), 'value' => $types, 'optgroup-name' => $item->getData('title')];
+        }
 
         return $groups;
     }
