@@ -23,6 +23,11 @@
                     <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\CustomOptions</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
+
+                <item name="configurable" xsi:type="array">
+                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\Configurable</item>
+                    <item name="sortOrder" xsi:type="number">140</item>
+                </item>
             </argument>
         </arguments>
     </virtualType>
