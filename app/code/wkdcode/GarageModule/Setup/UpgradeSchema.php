@@ -105,7 +105,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 $setup->getTable('catalog_product_option_type_value'),
                 'conditional_on',
                 Table::TYPE_INTEGER,
-                null,
+                0,
                 [],
                 'Conditional On'
             );
