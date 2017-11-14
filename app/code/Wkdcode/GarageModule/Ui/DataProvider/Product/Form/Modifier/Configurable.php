@@ -1,7 +1,7 @@
 <?php
     namespace Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier;
 
-    class Configurable extends \Magento\Downloadable\Ui\DataProvider\Product\Form\Modifier\Composite
+    class Configurable extends \Magento\ConfigurableProduct\Ui\DataProvider\Product\Form\Modifier\Composite
     {
         /**
          * {@inheritdoc}
