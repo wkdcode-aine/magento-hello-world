@@ -39,6 +39,7 @@ class Select extends \Magento\Catalog\Block\Product\View\Options\Type\Select
                 $select->setName('options[' . $_option->getid() . '][]');
                 $select->setClass('multiselect admin__control-multiselect' . $require . ' product-custom-option');
             }
+            $depandant_on = false;
             foreach ($_option->getValues() as $_value) {
                 $priceStr = $this->_formatPrice(
                     [
@@ -50,10 +51,17 @@ class Select extends \Magento\Catalog\Block\Product\View\Options\Type\Select
 
                 $select->addOption(
                     $_value->getOptionTypeId(),
-                    $_value->getTitle() . ' ' . strip_tags($priceStr) . '',
-                    ['price' => $this->pricingHelper->currencyByStore($_value->getPrice(true), $store, false), 'depends-on' => $_value->getConditionalOn()]
+                    $_value->getTitle() . ' ' . $_value->getConditionalOnId() .  ' ' . strip_tags($priceStr) . '',
+                    [
+                        'price' => $this->pricingHelper->currencyByStore($_value->getPrice(true), $store, false),
+                        'depends-on-value' => $_value->getConditionalOnId(),
+                        'depends-on-option' => $_value->getConditionalParent()
+                    ]
                 );
+
+                if( $_value->getConditionalOnId() != null )  $depandant_on = true;
             }
+            if( $depandant_on ) $extraParams .= ' data-dependant="true"';
             if ($_option->getType() == \Magento\Catalog\Api\Data\ProductCustomOptionInterface::OPTION_TYPE_MULTIPLE) {
                 $extraParams = ' multiple="multiple"';
             }
