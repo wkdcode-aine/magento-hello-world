@@ -4,7 +4,7 @@ namespace Wkdcode\GarageModule\Controller\Adminhtml\Door;
 
 use Magento\Framework\Controller\ResultFactory;
 
-class Edit extends \Wkdcode\GarageModule\Controller\Adminhtml\Door
+class Edit extends \Magento\Backend\App\Action
 {
     public function execute()
     {

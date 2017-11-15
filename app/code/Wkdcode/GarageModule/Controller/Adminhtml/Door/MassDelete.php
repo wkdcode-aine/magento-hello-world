@@ -7,7 +7,7 @@
     use Wkdcode\GarageModule\Model\ResourceModel\Door\Collection as CollectionFactory;
     use Wkdcode\GarageModule\Api\DoorRepositoryInterface;
 
-    class MassDelete extends Wkdcode\GarageModule\Controller\Adminhtml\Door
+    class MassDelete extends \Magento\Backend\App\Action
     {
         /**
          * Massactions filter
@@ -35,7 +35,7 @@
          */
         public function __construct(
             Context $context,
-            Builder $doorBuilder,
+            // Builder $doorBuilder,
             Filter $filter,
             CollectionFactory $collectionFactory,
             DoorRepositoryInterface $doorRepository = null
@@ -44,7 +44,7 @@
             $this->collectionFactory = $collectionFactory;
             $this->doorRepository = $doorRepository
                 ?: \Magento\Framework\App\ObjectManager::getInstance()->create(DoorRepositoryInterface::class);
-            parent::__construct($context, $doorBuilder);
+            parent::__construct($context, null);
         }
 
         /**
