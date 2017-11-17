@@ -2,10 +2,10 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="product.info.options.select">
-           <block class="Wkdcode\GarageModule\Block\Product\View\Options\Type\Select" as="select"/>
+           <block class="MiltonBayer\General\Block\Product\View\Options\Type\Select" as="select"/>
 
            <action method='setTemplate'>
-               <argument name='template' xsi:type='string'>Wkdcode_GarageModule::product/view/options/type/select.phtml</argument>
+               <argument name='template' xsi:type='string'>MiltonBayer_General::product/view/options/type/select.phtml</argument>
            </action>
 
         </referenceBlock>

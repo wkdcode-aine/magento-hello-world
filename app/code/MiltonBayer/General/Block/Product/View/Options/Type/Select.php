@@ -1,5 +1,5 @@
 <?php
-namespace Wkdcode\GarageModule\Block\Product\View\Options\Type;
+namespace MiltonBayer\General\Block\Product\View\Options\Type;
 
 class Select extends \Magento\Catalog\Block\Product\View\Options\Type\Select
 {

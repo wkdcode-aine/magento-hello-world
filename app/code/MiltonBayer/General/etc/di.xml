@@ -5,16 +5,6 @@
     <preference type="Magento\Catalog\Model\Category" for="MiltonBayer\General\Api\Data\CategoryInterface"/>
     <preference type="MiltonBayer\General\Model\CategoryWordpressList" for="MiltonBayer\General\Api\CategoryRepositoryInterface"/>
 
-    <preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="Wkdcode\GarageModule\Block\Product\View\Options\Type\Select" />
+    <preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="MiltonBayer\General\Block\Product\View\Options\Type\Select" />
     <preference for="Magento\Catalog\Model\Product\Option\Value" type="MiltonBayer\General\Model\Product\Option\Value" />
-
-    <preference for="Magento\GiftMessage\Ui\DataProvider\Product\Modifier\GiftMessage" type="Wkdcode\GarageModule\Ui\DataProvider\Product\Modifier\GiftMessage" />
-
-    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
-        <arguments>
-            <argument name="columns" xsi:type="array">
-                <item name="base_tax_amount" xsi:type="string">sales_order.base_tax_amount</item>
-            </argument>
-        </arguments>
-    </virtualType>
 </config>
