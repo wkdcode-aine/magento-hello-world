@@ -6,13 +6,6 @@
         <remove id="Magento_Reports::report" />
         <remove id="Magento_Marketplace::partners" />
 
-        <!-- <update id="Magento_Catalog::catalog" title="Products" translate="title" sortOrder="20" action="catalog/product/" />
-        <remove id="Magento_Catalog::catalog_products" />
-        <remove id="Magento_Catalog::catalog_categories" />
-        <remove id="Magento_Catalog::catalog_attributes_attributes" />
-        <remove id="Magento_Catalog::catalog_attributes_sets" />
-        <remove id="Magento_Catalog::inventory" /> -->
-
         <update id="Magento_Sales::sales" title="Orders" translate="title" sortOrder="15" action="sales/order" />
         <remove id="Magento_Sales::sales_operation" />
         <remove id="Magento_Sales::sales_order" />
@@ -23,8 +16,5 @@
         <remove id="Magento_Sales::system_order_statuses" />
 
         <update id="Magento_Customer::customer" title="Customers" translate="title" module="Magento_Customer" sortOrder="30" action="customer/index/" resource="Magento_Customer::manage"/>
-        <add id="Wkdcode_GarageModule::wkdcode" title="Wkdcode"
-             module="Wkdcode_GarageModule" resource="Wkdcode_GarageModule::wkdcode"
-             translate="title" sortOrder="900" action="wkdcode"/>
     </menu>
 </config>
