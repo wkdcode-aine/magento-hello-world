@@ -1,5 +1,5 @@
 <?php
-    namespace Wkdcode\GarageModule\Ui\Component\Listing\Columns;
+    namespace MiltonBayer\General\Ui\Component\Listing\Columns;
 
     class Quantity extends \Magento\Ui\Component\Listing\Columns\Column
     {

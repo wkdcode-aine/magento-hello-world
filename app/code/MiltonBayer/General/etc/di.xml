@@ -6,7 +6,7 @@
     <preference type="MiltonBayer\General\Model\CategoryWordpressList" for="MiltonBayer\General\Api\CategoryRepositoryInterface"/>
 
     <preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="Wkdcode\GarageModule\Block\Product\View\Options\Type\Select" />
-    <preference for="Magento\Catalog\Model\Product\Option\Value" type="Wkdcode\GarageModule\Model\Product\Option\Value" />
+    <preference for="Magento\Catalog\Model\Product\Option\Value" type="MiltonBayer\General\Model\Product\Option\Value" />
 
     <preference for="Magento\GiftMessage\Ui\DataProvider\Product\Modifier\GiftMessage" type="Wkdcode\GarageModule\Ui\DataProvider\Product\Modifier\GiftMessage" />
 

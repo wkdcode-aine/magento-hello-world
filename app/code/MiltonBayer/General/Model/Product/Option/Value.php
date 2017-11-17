@@ -1,5 +1,5 @@
 <?php
-    namespace Wkdcode\GarageModule\Model\Product\Option;
+    namespace MiltonBayer\General\Model\Product\Option;
 
     class Value extends \Magento\Catalog\Model\Product\Option\Value implements \Magento\Catalog\Api\Data\ProductCustomOptionValuesInterface
     {
