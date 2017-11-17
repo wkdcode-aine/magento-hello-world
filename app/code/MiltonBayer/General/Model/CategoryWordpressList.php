@@ -1,8 +1,8 @@
 <?php
 
-namespace Wkdcode\GarageModule\Model;
+namespace MiltonBayer\General\Model;
 
-use Wkdcode\GarageModule\Api\CategoryRepositoryInterface;
+use MiltonBayer\General\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory;
 use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;

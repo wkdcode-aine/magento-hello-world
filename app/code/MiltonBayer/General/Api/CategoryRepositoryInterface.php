@@ -1,11 +1,11 @@
 <?php
 
-namespace Wkdcode\GarageModule\Api;
+namespace MiltonBayer\General\Api;
 
 interface CategoryRepositoryInterface
 {
     /**
-     * @return \Wkdcode\GarageModule\Api\Data\CategoryInterface[]
+     * @return \MiltonBayer\General\Api\Data\CategoryInterface[]
      */
     public function getWordpressList();
 }

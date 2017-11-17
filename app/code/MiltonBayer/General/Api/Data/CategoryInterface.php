@@ -1,6 +1,6 @@
 <?php
 
-namespace Wkdcode\GarageModule\Api\Data;
+namespace MiltonBayer\General\Api\Data;
 
 interface CategoryInterface
 {
