@@ -1,5 +1,5 @@
 <?php
-namespace Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier;
+namespace MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier;
 
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
 

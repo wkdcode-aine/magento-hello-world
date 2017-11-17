@@ -34,7 +34,7 @@
                 </item>
             </argument>
         </column>
-        <column name="qty" class="Wkdcode\GarageModule\Ui\Component\Listing\Columns\Quantity">
+        <column name="qty" class="MiltonBayer\General\Ui\Component\Listing\Columns\Quantity">
         </column>
     </columns>
 </listing>

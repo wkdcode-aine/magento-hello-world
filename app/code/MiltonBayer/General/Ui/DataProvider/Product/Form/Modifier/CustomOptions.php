@@ -1,5 +1,5 @@
 <?php
-    namespace Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier;
+    namespace MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier;
 
     use Magento\Catalog\Model\Config\Source\Product\Options\Price as ProductOptionsPrice;
     use Magento\Catalog\Model\Locator\LocatorInterface;
@@ -13,7 +13,7 @@
     use Magento\Ui\Component\Form\Element\Select;
     use Magento\Ui\Component\Form\Field;
 
-    use Wkdcode\GarageModule\Model\Config\Source\Product\Options\Options as ProductOptionsOptions;
+    use MiltonBayer\General\Model\Config\Source\Product\Options\Options as ProductOptionsOptions;
 
 
     class CustomOptions extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions

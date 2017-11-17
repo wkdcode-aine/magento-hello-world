@@ -1,5 +1,5 @@
 <?php
-    namespace Wkdcode\GarageModule\Ui\DataProvider\Product\Modifier;
+    namespace MiltonBayer\General\Ui\DataProvider\Product\Modifier;
 
     class GiftMessage extends \Magento\GiftMessage\Ui\DataProvider\Product\Modifier\GiftMessage
     {

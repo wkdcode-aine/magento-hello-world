@@ -4,28 +4,28 @@
         <arguments>
             <argument name="modifiers" xsi:type="array">
                 <item name="custommodel" xsi:type="array">
-                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\CustomModel</item>
+                    <item name="class" xsi:type="string">MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier\CustomModel</item>
                     <item name="sortOrder" xsi:type="number">999</item>
                 </item>
                 <item name="related" xsi:type="array">
-                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\Related</item>
+                    <item name="class" xsi:type="string">MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier\Related</item>
                     <item name="sortOrder" xsi:type="number">111</item>
                 </item>
                 <item name="gift-message" xsi:type="array">
-                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Modifier\GiftMessage</item>
+                    <item name="class" xsi:type="string">MiltonBayer\General\Ui\DataProvider\Product\Modifier\GiftMessage</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
                 <item name="downloadable" xsi:type="array">
-                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\Downloadable</item>
+                    <item name="class" xsi:type="string">MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier\Downloadable</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
                 <item name="custom-options" xsi:type="array">
-                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\CustomOptions</item>
+                    <item name="class" xsi:type="string">MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier\CustomOptions</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
 
                 <item name="configurable" xsi:type="array">
-                    <item name="class" xsi:type="string">Wkdcode\GarageModule\Ui\DataProvider\Product\Form\Modifier\Configurable</item>
+                    <item name="class" xsi:type="string">MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier\Configurable</item>
                     <item name="sortOrder" xsi:type="number">140</item>
                 </item>
             </argument>
