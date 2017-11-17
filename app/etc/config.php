@@ -107,7 +107,7 @@ return array (
     'Magento_Weee' => 1,
     'Magento_CatalogWidget' => 1,
     'Magento_Wishlist' => 1,
+    'MiltonBayer_General' => 1,
     'Shopial_Facebook' => 1,
-    'Wkdcode_GarageModule' => 1,
   ),
 );
