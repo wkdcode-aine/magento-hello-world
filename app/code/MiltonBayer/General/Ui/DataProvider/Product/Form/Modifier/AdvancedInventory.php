@@ -1,7 +1,7 @@
 <?php
-    namespace MiltonBayer\General\Ui\DataProvider\Product\Modifier;
+    namespace MiltonBayer\General\Ui\DataProvider\Product\Form\Modifier;
 
-    class GiftMessage extends \Magento\GiftMessage\Ui\DataProvider\Product\Modifier\GiftMessage
+    class AdvancedInventory extends \Magento\CatalogInventory\Ui\DataProvider\Product\Form\Modifier\AdvancedInventory
     {
         /**
          * {@inheritdoc}
@@ -9,8 +9,6 @@
          */
         public function modifyMeta(array $meta)
         {
-            unset($meta['gift-options']);
-
             return $meta;
         }
 
