@@ -5,6 +5,7 @@
     <preference type="Magento\Catalog\Model\Category" for="MiltonBayer\General\Api\Data\CategoryInterface"/>
     <preference type="MiltonBayer\General\Model\CategoryWordpressList" for="MiltonBayer\General\Api\CategoryRepositoryInterface"/>
 
+    <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="MiltonBayer\General\Block\Product\ProductList\Toolbar" />
     <preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="MiltonBayer\General\Block\Product\View\Options\Type\Select" />
     <preference for="Magento\Catalog\Model\Product\Option\Value" type="MiltonBayer\General\Model\Product\Option\Value" />
 </config>

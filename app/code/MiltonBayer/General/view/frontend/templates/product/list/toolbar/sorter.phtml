@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \MiltonBayer\General\Block\Product\ProductList\Toolbar
+ */
+use MiltonBayer\General\Model\Product\ProductList\Toolbar;
+
+$selected = 'selected="selected"';
+?>
+<div class="toolbar-sorter sorter">
+    <label class="sorter-label" for="sorter"><?= /* @escapeNotVerified */ __('Sort By') ?></label>
+    <select id="sorter" data-role="sorter" class="sorter-options">
+        <option value="special_price-asc" <?php ($block->isOrderCurrent('special_price-asc') ? $selected : ''); ?>><?= __('Price (low-high)') ?></option>
+        <option value="special_price-desc" <?php ($block->isOrderCurrent('special_price-desc') ? $selected : ''); ?>><?= __('Price (high-low)') ?></option>
+        <option value="name-asc" <?php ($block->isOrderCurrent('name-asc') ? $selected : ''); ?>><?= __('Alphabetically (A-Z)') ?></option>
+        <option value="name-desc" <?php ($block->isOrderCurrent('name-desc') ? $selected : ''); ?>><?= __('Alphabetically (Z-A)') ?></option>
+    </select>
+</div>
