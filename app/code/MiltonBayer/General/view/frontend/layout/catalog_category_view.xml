@@ -6,6 +6,11 @@
                 <argument name='template' xsi:type='string'>MiltonBayer_General::category/description.phtml</argument>
             </action>
         </referenceBlock>
+        <referenceBlock name="category.products.list">
+            <action method="setDefaultOrder">
+                <argument name="field" xsi:type="string">name</argument>
+            </action>
+        </referenceBlock>
         <referenceBlock name="product_list_toolbar">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">MiltonBayer_General::product/list/toolbar.phtml</argument>
