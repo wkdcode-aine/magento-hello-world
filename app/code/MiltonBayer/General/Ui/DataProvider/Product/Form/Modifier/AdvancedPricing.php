@@ -9,7 +9,7 @@
          */
         public function modifyMeta(array $meta)
         {
-            // unset($meta['advanced-pricing']);
+            unset($meta['advanced-pricing']);
             return $meta;
         }
 
