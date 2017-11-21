@@ -4,39 +4,6 @@
     class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
     {
         /**
-         * Get grit products sort order field
-         *
-         * @return string
-         */
-        public function getCurrentOrder()
-        {
-            $order = $this->_getData('_current_grid_order');
-            if ($order) {
-                return $order;
-            }
-
-            $orders = $this->getAvailableOrders();
-            $defaultOrder = $this->getOrderField();
-
-            if (!isset($orders[$defaultOrder])) {
-                $keys = array_keys($orders);
-                $defaultOrder = $keys[0];
-            }
-
-            $order = $this->_toolbarModel->getOrder();
-            if (!$order || !isset($orders[$order])) {
-                $order = $defaultOrder;
-            }
-
-            if ($order != $defaultOrder) {
-                $this->_memorizeParam('sort_order', $order);
-            }
-
-            $this->setData('_current_grid_order', $order);
-            return $order;
-        }
-
-        /**
          * Retrieve available Order fields list
          *
          * @return array
@@ -48,6 +15,17 @@
         }
 
         /**
+         * Compare defined order and direction fields with current order direction field
+         *
+         * @param string $order
+         * @return bool
+         */
+        public function isOrderDirectionCurrent($order)
+        {
+            return $order == $this->getCurrentOrder() . '-' . $this->getCurrentDirection();
+        }
+
+        /**
          * Retrieve available Order fields list
          *
          * @return array
@@ -56,9 +34,9 @@
         {
             $orderAndDirection = [];
             $directions = ['asc', 'desc'];
-            foreach( $this->getAvailableOrders() as $order ) {
+            foreach( $this->getAvailableOrders() as $index => $order ) {
                 foreach( $directions as $dir ) {
-                    $orderAndDirection[$order . '-' . $dir] = $order . '-' . $dir;
+                    $orderAndDirection[$index . '-' . $dir] = $order . '-' . $dir;
                 }
             }
 
