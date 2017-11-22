@@ -29,6 +29,7 @@ use Magento\Catalog\Model\Product\ProductList\Toolbar;
 
         <?php if ($block->isExpanded()): ?>
             <?php include ($block->getTemplateFile('MiltonBayer_General::product/list/toolbar/sorter.phtml')) ?>
+            <?php include ($block->getTemplateFile('MiltonBayer_General::product/list/toolbar/manufacturer.phtml')) ?>
         <?php endif; ?>
     </div>
 <?php endif ?>

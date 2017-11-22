@@ -1,0 +1,18 @@
+<?php
+    use MiltonBayer\General\Model\Product\ProductList\Toolbar;
+?>
+<div class="toolbar-sorter sorter">
+    <label class="sorter-label" for="sorter"><?= /* @escapeNotVerified */ __('Brand') ?></label>
+    <select class="sorter-options" data-role="manufacturer">
+        <option value=''><?= __('All Brands') ?></option>
+        <?php foreach ($block->getAvailableManufacturers() as $_key => $_order): ?>
+            <option value="<?= /* @escapeNotVerified */ $_order['value'] ?>"
+                <?php if ($block->isCurrentManufacturer($_order['value'])): ?>
+                    selected="selected"
+                <?php endif; ?>
+                >
+                <?= $block->escapeHtml(__($_order['label'])) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>

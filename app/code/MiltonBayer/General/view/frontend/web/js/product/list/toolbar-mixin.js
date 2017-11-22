@@ -10,9 +10,15 @@ define([
             /** @inheritdoc */
             _create: function () {
                 this.options.orderDefault = '0';
+                this.options.manufacturerDefault = '';
+                this.options.manufacturerControl = '[data-role="manufacturer"]';
+                this.options.manufacturer = 'manufacturer';
+
+                $(this.options.manufacturerControl).off('change');
                 this._bind($(this.options.modeControl), this.options.mode, this.options.modeDefault);
                 this._bind($(this.options.limitControl), this.options.limit, this.options.limitDefault);
-                this._bindMulti($('.js-sort-select'), this.options.order, this.options.direction, '0-asc');
+                this._bind($(this.options.manufacturerControl), this.options.manufacturer, this.options.manufacturerDefault);
+                this._bindMulti($('.js-sort-select'), this.options.order, this.options.direction, 'special_price-asc');
             },
 
             /** @inheritdoc */
