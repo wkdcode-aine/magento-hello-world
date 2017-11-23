@@ -30,7 +30,7 @@
             <?php endif; ?>
             <?php $wrapOptions = false; ?>
             <?php foreach ($block->getFilters() as $filter): ?>
-                <?php if ($filter->getItemsCount() && $filter->getRequestVar() !== 'manufacturer' ): ?>
+                <?php if ($filter->getItemsCount() && $filter->getRequestVar() !== 'manufacturer' && $filter->getRequestVar() !== 'cat' ): ?>
                     <?php if (!$wrapOptions): ?>
                         <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Shopping Options') ?></strong>
                         <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
