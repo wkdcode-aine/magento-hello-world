@@ -6,6 +6,11 @@
                 <argument name="template" xsi:type="string">MiltonBayer_General::product/list/toolbar.phtml</argument>
             </action>
         </referenceBlock>
+        <referenceBlock name="catalogsearch.leftnav">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">MiltonBayer_General::layer/view.phtml</argument>
+            </action>
+        </referenceBlock>
         <referenceBlock name="catalogsearch.navigation.renderer">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">MiltonBayer_General::layer/filter.phtml</argument>
