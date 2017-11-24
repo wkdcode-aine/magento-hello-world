@@ -1,0 +1,17 @@
+<?php
+/**
+ * Door Configurator view template
+ *
+ * @var $block \MiltonBayer\General\Block\Category\DoorConfigurator
+ */
+?>
+
+<?php if( $block->showDoorConfigurator() ): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "category_door_configurator": {}
+            }
+        }
+    </script>
+<?php endif; ?>
