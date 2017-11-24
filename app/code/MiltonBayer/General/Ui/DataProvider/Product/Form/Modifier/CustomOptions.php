@@ -10,6 +10,7 @@
     use Magento\Ui\Component\Container;
     use Magento\Ui\Component\DynamicRows;
     use Magento\Ui\Component\Form\Element\DataType\Text;
+    use Magento\Ui\Component\Form\Element\Checkbox;
     use Magento\Ui\Component\Form\Element\Select;
     use Magento\Ui\Component\Form\Field;
 
@@ -19,6 +20,9 @@
     class CustomOptions extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions
     {
 
+        const FIELD_IS_SHOW_PRODUCT_PAGE_NAME = 'is_show_product_page';
+        const FIELD_IS_SHOW_DESIGN_A_DOOR_NAME = 'is_show_design_a_door';
+        const FIELD_IS_REQUIRED_DESIGN_A_DOOR_NAME = 'is_required_design_a_door';
         const FIELD_CONDITIONAL_ON_NAME = 'conditional_on';
 
         /**
@@ -59,6 +63,71 @@
             $this->createCustomOptionsPanel();
 
             return $this->meta;
+        }
+
+        /**
+         * Get config for container with common fields for any type
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getCommonContainerConfig($sortOrder)
+        {
+            $commonContainer = [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'componentType' => Container::NAME,
+                            'formElement' => Container::NAME,
+                            'component' => 'Magento_Ui/js/form/components/group',
+                            'breakLine' => false,
+                            'showLabel' => false,
+                            'additionalClasses' => 'admin__field-group-columns admin__control-group-equal',
+                            'sortOrder' => $sortOrder,
+                        ],
+                    ],
+                ],
+                'children' => [
+                    static::FIELD_OPTION_ID => $this->getOptionIdFieldConfig(10),
+                    static::FIELD_TITLE_NAME => $this->getTitleFieldConfig(
+                        20,
+                        [
+                            'arguments' => [
+                                'data' => [
+                                    'config' => [
+                                        'label' => __('Option Titles'),
+                                        'component' => 'Magento_Catalog/component/static-type-input',
+                                        'valueUpdate' => 'input',
+                                        'imports' => [
+                                            'optionId' => '${ $.provider }:${ $.parentScope }.option_id',
+                                            'isUseDefault' => '${ $.provider }:${ $.parentScope }.is_use_default'
+                                        ]
+                                    ],
+                                ],
+                            ],
+                        ]
+                    ),
+                    static::FIELD_TYPE_NAME => $this->getTypeFieldConfig(30),
+                    static::FIELD_IS_REQUIRE_NAME => $this->getIsRequireFieldConfig(40),
+                    static::FIELD_IS_SHOW_PRODUCT_PAGE_NAME => $this->getIsShowProductPageFieldConfig(50),
+                    static::FIELD_IS_SHOW_DESIGN_A_DOOR_NAME => $this->getIsShowDesignADoorFieldConfig(60),
+                    static::FIELD_IS_REQUIRED_DESIGN_A_DOOR_NAME => $this->getIsRequireDesignADoorFieldConfig(70),
+                ]
+            ];
+
+            if ($this->locator->getProduct()->getStoreId()) {
+                $useDefaultConfig = [
+                    'service' => [
+                        'template' => 'Magento_Catalog/form/element/helper/custom-option-service',
+                    ]
+                ];
+                $titlePath = $this->arrayManager->findPath(static::FIELD_TITLE_NAME, $commonContainer, null)
+                    . static::META_CONFIG_PATH;
+                $commonContainer = $this->arrayManager->merge($titlePath, $commonContainer, $useDefaultConfig);
+            }
+
+            return $commonContainer;
         }
 
         /**
@@ -157,6 +226,127 @@
                             'options' => $this->productOptionsOptions->toOptionArray(),
                             'sortOrder' => $sortOrder,
                             'disabled' => $disabled
+                        ],
+                    ],
+                ],
+            ];
+        }
+
+
+        /**
+         * Get config for "Required on Product Page" field
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getIsRequireFieldConfig($sortOrder)
+        {
+            return [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Required on Product Page?'),
+                            'componentType' => Field::NAME,
+                            'formElement' => Checkbox::NAME,
+                            'dataScope' => static::FIELD_IS_REQUIRE_NAME,
+                            'dataType' => Text::NAME,
+                            'sortOrder' => $sortOrder,
+                            'value' => '1',
+                            'valueMap' => [
+                                'true' => '1',
+                                'false' => '0'
+                            ],
+                        ],
+                    ],
+                ],
+            ];
+        }
+
+        /**
+         * Get config for "Show on Product Page" field
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getIsShowProductPageFieldConfig($sortOrder)
+        {
+            return [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Show on Product Page?'),
+                            'componentType' => Field::NAME,
+                            'formElement' => Checkbox::NAME,
+                            'dataScope' => static::FIELD_IS_SHOW_DESIGN_A_DOOR_NAME,
+                            'dataType' => Text::NAME,
+                            'sortOrder' => $sortOrder,
+                            'value' => '1',
+                            'valueMap' => [
+                                'true' => '1',
+                                'false' => '0'
+                            ],
+                        ],
+                    ],
+                ],
+            ];
+        }
+
+        /**
+         * Get config for "Show on Design a Door" field
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getIsShowDesignADoorFieldConfig($sortOrder)
+        {
+            return [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Show on \'Design a Door\' Page?'),
+                            'componentType' => Field::NAME,
+                            'formElement' => Checkbox::NAME,
+                            'dataScope' => static::FIELD_IS_REQUIRED_DESIGN_A_DOOR_NAME,
+                            'dataType' => Text::NAME,
+                            'sortOrder' => $sortOrder,
+                            'value' => '1',
+                            'valueMap' => [
+                                'true' => '1',
+                                'false' => '0'
+                            ],
+                        ],
+                    ],
+                ],
+            ];
+        }
+
+        /**
+         * Get config for "Required on Design a Door" field
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getIsRequireDesignADoorFieldConfig($sortOrder)
+        {
+            return [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Required on \'Design a Door\' Page?'),
+                            'componentType' => Field::NAME,
+                            'formElement' => Checkbox::NAME,
+                            'dataScope' => static::FIELD_IS_SHOW_PRODUCT_PAGE_NAME,
+                            'dataType' => Text::NAME,
+                            'sortOrder' => $sortOrder,
+                            'value' => '1',
+                            'valueMap' => [
+                                'true' => '1',
+                                'false' => '0'
+                            ],
                         ],
                     ],
                 ],
