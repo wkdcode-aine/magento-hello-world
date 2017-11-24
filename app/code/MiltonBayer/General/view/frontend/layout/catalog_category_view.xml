@@ -23,7 +23,7 @@
         </referenceContainer>
 
         <referenceContainer name="columns.top">
-            <block class="MiltonBayer\General\Block\Category\DoorConfigurator" name="door-configurator" template="MiltonBayer_General::category/door-configurator.phtml" />
+            <block class="MiltonBayer\General\Block\Category\DesignADoor" name="design-a-door" template="MiltonBayer_General::category/design-a-door.phtml" />
         </referenceContainer>
     </body>
 </page>

@@ -1,0 +1,44 @@
+<?php
+/**
+ * Design a Door view template
+ *
+ * @var $block \MiltonBayer\General\Block\Category\DesignADoor
+ */
+?>
+
+<?php if( $block->showDoorBuilder() ) { ?>
+
+    <div class="">
+        <ul class="tabs">
+            <li class="js-tab js-intro-tab active">
+                Intro
+            </li>
+            <li class="js-tab js-door-list">
+                Door List
+            </li>
+            <li class="js-tab js-door-detail">
+                Detail
+            </li>
+            <li class="js-tab js-door-size">
+                Size
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="js-tab js-intro-tab active">
+                Some text here<br />
+                <div class="js-next" data-tab="door-selector">Build a door...</div>
+            </div>
+            <div class="js-tab js-door-list">
+                spinner!
+            </div>
+        </div>
+    </div>
+
+    <!-- <script type="text/x-magento-init">
+        {
+            "*": {
+                "category_door_configurator": {}
+            }
+        }
+    </script> -->
+<?php } ?>

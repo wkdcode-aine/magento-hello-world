@@ -1,7 +1,7 @@
 <?php
     namespace MiltonBayer\General\Block\Category;
 
-    class DoorConfigurator extends \Magento\Framework\View\Element\Template
+    class DesignADoor extends \Magento\Framework\View\Element\Template
     {
         /**
          * Core registry
@@ -28,11 +28,9 @@
         /**
          * @return boolean
          */
-        public function showDoorConfigurator()
+        public function showDoorBuilder()
         {
-
-            die(var_dump($this->getCurrentCategory()->getData('name')));
-            return false;
+            return true;//$this->getCurrentCategory()->getData('show_design_a_door') == 1;
         }
 
         /**
