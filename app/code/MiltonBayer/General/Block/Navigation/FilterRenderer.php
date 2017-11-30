@@ -15,11 +15,12 @@
             $this->assign('filterItems', $filter->getItems());
             foreach($selectedFilters as $_selected) {
                 if( $filter->getRequestVar() == $_selected->getFilter()->getRequestVar() ) {
-                    $this->assign('selected', $_selected->getLabel());
+                    $labels = $_selected->getLabel();
+                    $this->assign('selected', is_array($labels) ? $labels : [$labels]);
                 }
             }
             $html = $this->_toHtml();
-            // $this->assign('filterItems', []);
+            $this->assign('filterItems', []);
             return $html;
         }
     }
