@@ -21,19 +21,11 @@
             <strong data-role="title"><?= /* @escapeNotVerified */ __('Shop By') ?></strong>
         </div>
         <div class="block-content filter-content">
-            <?= $block->getChildHtml('state') ?>
-
-            <?php if ($block->getLayer()->getState()->getFilters()): ?>
-                <div class="block-actions filter-actions">
-                    <a href="<?= /* @escapeNotVerified */ $block->getClearUrl() ?>" class="action clear filter-clear"><span><?= /* @escapeNotVerified */ __('Clear All') ?></span></a>
-                </div>
-            <?php endif; ?>
             <?php $wrapOptions = false; ?>
             <?php foreach ($block->getFilters() as $filter): ?>
-                <?php if ($filter->getItemsCount() && $filter->getRequestVar() !== 'manufacturer' && $filter->getRequestVar() !== 'cat' ): ?>
+                <?php if ($filter->getRequestVar() !== 'manufacturer' && $filter->getRequestVar() !== 'cat' ): ?>
                     <?php if (!$wrapOptions): ?>
-                        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Shopping Options') ?></strong>
-                        <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+                        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Refine your search') ?></strong>
                     <?php  $wrapOptions = true; endif; ?>
                     <div data-role="collapsible" class="filter-options-item">
                         <div data-role="title" class="filter-options-title"><?= /* @escapeNotVerified */ __($filter->getName()) ?></div>
@@ -41,9 +33,7 @@
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <?php if ($wrapOptions): ?>
-                </div>
-            <?php else: ?>
+            <?php if (!$wrapOptions): ?>
                 <script>
                     require([
                         'jquery'
