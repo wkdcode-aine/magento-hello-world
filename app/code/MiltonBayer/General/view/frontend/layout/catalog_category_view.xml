@@ -10,7 +10,11 @@
             <action method="setDefaultOrder">
                 <argument name="field" xsi:type="string">name</argument>
             </action>
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">MiltonBayer_General::product/list.phtml</argument>
+            </action>
         </referenceBlock>
+
         <referenceBlock name="product_list_toolbar">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">MiltonBayer_General::product/list/toolbar.phtml</argument>
