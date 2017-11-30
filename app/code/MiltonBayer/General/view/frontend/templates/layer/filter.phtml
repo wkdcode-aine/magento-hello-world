@@ -17,10 +17,21 @@
 <ol class="items">
     <?php foreach ($filterItems as $filterItem): ?>
         <?php $label = $filterItem->getLabel(); ?>
-        <li class="item">
+        <li class="item <?= !empty($selected) && in_array($label, $selected) ? 'active' : '' ?>">
             <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
-                <?= /* @escapeNotVerified */ $label . " - " . (in_array($label, $selected) ? 'selected' : '') ?>
+                <?= /* @escapeNotVerified */ $label ?>
             </a>
         </li>
     <?php endforeach ?>
 </ol>
+
+
+<style>
+    ol.items li.item.active {
+        background: #006bb4;
+    }
+
+    ol.items li.item.active a {
+        color: #fff;
+    }
+</style>
