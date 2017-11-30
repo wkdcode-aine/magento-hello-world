@@ -136,7 +136,7 @@
          */
         private function loadAvailableOrders()
         {
-            $this->_availableOrder = ['special_price' => 'special_price', 'name' => 'name'];
+            $this->_availableOrder = ['price' => 'price', 'name' => 'name'];
             return $this;
         }
 
