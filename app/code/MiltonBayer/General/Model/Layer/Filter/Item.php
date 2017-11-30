@@ -4,20 +4,55 @@
     class Item extends \Magento\Catalog\Model\Layer\Filter\Item
     {
         /**
+         * @var \Magento\Framework\App\RequestInterface $request
+         */
+        protected $_request;
+
+        /**
+         * Construct
+         *
+         * @param \Magento\Framework\UrlInterface $url
+         * @param \Magento\Theme\Block\Html\Pager $htmlPagerBlock
+         * @param array $data
+         */
+        public function __construct(
+            \Magento\Framework\App\RequestInterface $request,
+            \Magento\Framework\UrlInterface $url,
+            \Magento\Theme\Block\Html\Pager $htmlPagerBlock,
+            array $data = []
+        ) {
+            $this->_request = $request;
+            parent::__construct($url, $htmlPagerBlock, $data);
+        }
+
+        /**
          * Get filter item url
          *
          * @return string
          */
         public function getUrl()
         {
-            $str = "";
-            $request_var = "6,7";
-            $values = $request_var == "" ? [] : explode(",", $request_var);
-            $values[] = $this->getValue();
-            array_unique($values);
+            $params = $this->_request->getParams();
+            $request_var = $this->getFilter()->getRequestVar();
+            $values = [];
+            $value = $this->getValue();
+
+            if( array_key_exists($request_var, $params) ) {
+                $get_var = $params[$request_var];
+                $values = $get_var == "" ? [] : explode(",", $get_var);
+                if( ($index = array_search($value, $values)) !== false ) {
+                    array_splice($values, $index, 1);
+                } else {
+                    $values[] = $value;
+                }
+            } else {
+                $values = [$value];
+            }
+
+            sort($values);
 
             $query = [
-                $this->getFilter()->getRequestVar() => implode(",", $values),
+                $request_var => implode(",", $values),
                 // exclude current page from urls
                 $this->_htmlPagerBlock->getPageVarName() => null,
             ];

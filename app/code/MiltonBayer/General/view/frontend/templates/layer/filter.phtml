@@ -16,9 +16,10 @@
 ?>
 <ol class="items">
     <?php foreach ($filterItems as $filterItem): ?>
+        <?php $label = $filterItem->getLabel(); ?>
         <li class="item">
             <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
-                <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
+                <?= /* @escapeNotVerified */ $label . " - " . (in_array($label, $selected) ? 'selected' : '') ?>
             </a>
         </li>
     <?php endforeach ?>

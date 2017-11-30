@@ -12,6 +12,7 @@
  *
  * @var $block \Magento\LayeredNavigation\Block\Navigation
  */
+ $selectedFilters = $block->getLayer()->getState()->getFilters();
 ?>
 
 <?php if ($block->canShowBlock()): ?>
@@ -29,7 +30,7 @@
                     <?php  $wrapOptions = true; endif; ?>
                     <div data-role="collapsible" class="filter-options-item">
                         <div data-role="title" class="filter-options-title"><?= /* @escapeNotVerified */ __($filter->getName()) ?></div>
-                        <div data-role="content" class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></div>
+                        <div data-role="content" class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->renderOptions($filter, $selectedFilters) ?></div>
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
