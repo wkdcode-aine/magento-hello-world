@@ -6,6 +6,7 @@
     <preference type="MiltonBayer\General\Model\CategoryWordpressList" for="MiltonBayer\General\Api\CategoryRepositoryInterface"/>
 
     <preference for="Magento\CatalogSearch\Model\Layer\Filter\Attribute" type="MiltonBayer\General\Model\Layer\Filter\Attribute" />
+    <preference for="Magento\Catalog\Model\Layer\Filter\Item" type="MiltonBayer\General\Model\Layer\Filter\Item" />
 
     <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="MiltonBayer\General\Block\Product\ProductList\Toolbar" />
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="MiltonBayer\General\Block\Product\ListProduct" />
