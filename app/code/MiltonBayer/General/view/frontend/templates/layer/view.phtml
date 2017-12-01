@@ -34,6 +34,10 @@
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
+
+            <div class="block-actions filter-actions">
+                <a href="<?= /* @escapeNotVerified */ $block->getClearUrl() ?>" class="action clear filter-clear <?php $block->getLayer()->getState()->getFilters() ?: 'disabled'; ?>"><span><?= /* @escapeNotVerified */ __('Clear All') ?></span></a>
+            </div>
             <?php if (!$wrapOptions): ?>
                 <script>
                     require([
