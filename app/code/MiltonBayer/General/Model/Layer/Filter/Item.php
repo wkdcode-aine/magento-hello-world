@@ -51,15 +51,11 @@
 
             sort($values);
 
-            if( count($values) > 0 ) {
-                $query = [
-                    $request_var => implode(",", $values),
-                    // exclude current page from urls
-                    $this->_htmlPagerBlock->getPageVarName() => null,
-                ];
-            } else {
-                $query = [$request_var => $this->getFilter()->getResetValue(), $this->_htmlPagerBlock->getPageVarName() => null];
-            }
+            $query = [
+                $request_var => count($values) > 0 ? implode(",", $values) : $this->getFilter()->getResetValue(),
+                // exclude current page from urls
+                $this->_htmlPagerBlock->getPageVarName() => null,
+            ];
 
             return $this->_url->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $query]);
         }
