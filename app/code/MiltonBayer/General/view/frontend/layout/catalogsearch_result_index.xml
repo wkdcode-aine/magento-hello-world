@@ -11,5 +11,17 @@
                 <argument name="template" xsi:type="string">MiltonBayer_General::layer/view.phtml</argument>
             </action>
         </referenceBlock>
+
+        <referenceBlock name="catalogsearch.navigation.renderer">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">MiltonBayer_General::layer/filter.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="search_result_list">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">MiltonBayer_General::product/list.phtml</argument>
+            </action>
+        </referenceBlock>
     </body>
 </page>
