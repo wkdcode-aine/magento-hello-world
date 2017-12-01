@@ -71,7 +71,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         </strong>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
-                        ...<?= $_product->getRecommendedRetailPrice()?>..
+                        <?= __('RRP') . ": " . $_product->getRecommendedRetailPrice() ?>
                         <?= $block->getProductDetailsHtml($_product) ?>
 
                         <div class="product-item-inner">
