@@ -5,8 +5,9 @@
     <preference type="Magento\Catalog\Model\Category" for="MiltonBayer\General\Api\Data\CategoryInterface"/>
     <preference type="MiltonBayer\General\Model\CategoryWordpressList" for="MiltonBayer\General\Api\CategoryRepositoryInterface"/>
 
-    <preference for="Magento\CatalogSearch\Model\Layer\Filter\Attribute" type="MiltonBayer\General\Model\Layer\Filter\Attribute" />
     <preference for="Magento\Catalog\Model\Layer\Filter\Item" type="MiltonBayer\General\Model\Layer\Filter\Item" />
+    <preference for="Magento\CatalogSearch\Model\Layer\Filter\Attribute" type="MiltonBayer\General\Model\Layer\Filter\Attribute" />
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection" type="MiltonBayer\General\Model\ResourceModel\Fulltext\Collection" />
     <preference for="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" type="MiltonBayer\General\Block\Navigation\FilterRenderer" />
     <preference for="Magento\LayeredNavigation\Block\Navigation\FilterRendererInterface" type="MiltonBayer\General\Block\Navigation\FilterRendererInterface" />
 

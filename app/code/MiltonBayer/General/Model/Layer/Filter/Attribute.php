@@ -18,8 +18,7 @@
             }
             $attribute = $this->getAttributeModel();
             /** @var \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $productCollection */
-            $productCollection = $this->getLayer()
-                ->getProductCollection();
+            $productCollection = $this->getLayer()->getProductCollection();
             $productCollection->addFieldToFilter($attribute->getAttributeCode(), $attributeValue);
             $label = $this->getOptionText($attributeValue);
             $this->getLayer()
