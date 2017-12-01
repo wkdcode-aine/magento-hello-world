@@ -5,6 +5,7 @@
     {
         public function getRecommendedRetailPrice($product)
         {
-            return $this->priceCurrency->format($product->getData('recommended_retail_price'));
+            $rrp = $product->getData('recommended_retail_price');
+            return $rrp > 0 ? __('RRP') . ": " . $this->priceCurrency->format($rrp) : '';
         }
     }
