@@ -27,16 +27,17 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '1.0.3', '<')) {
 
             $eavSetup->addAttribute(Category::ENTITY,
-               'show_door_confiurator', [
+               'show_design_a_door', [
                     'type'     => 'int',
-                    'label'    => 'Show Door Configurator',
+                    'label'    => 'Show Design a Door',
                     'input'    => 'text',
                     'visible'  => true,
-                    'default'  => 1,
+                    'default'  => 0,
                     'sort_order' => 3,
                     'required' => false,
                     'global'   => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                     'group'    => 'Display Settings',
+                    'source_model' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean'
                 ]);
         }
 
