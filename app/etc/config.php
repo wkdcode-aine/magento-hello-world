@@ -85,6 +85,7 @@ return array (
     'Magento_Integration' => 1,
     'Magento_SendFriend' => 1,
     'Magento_Shipping' => 1,
+    'Magento_Signifyd' => 1,
     'Magento_Sitemap' => 1,
     'Magento_Paypal' => 1,
     'Magento_Swagger' => 1,
