@@ -55,4 +55,23 @@
 
             return;
         }
+
+        /**
+         * Return price. If $flag is true and price is percent
+         *  return converted percent to price
+         *
+         * @param bool $flag
+         * @return float|int
+         */
+        public function getPrice($flag = false)
+        {
+            if ($flag && $this->getPriceType() == self::TYPE_PERCENT) {
+                $basePrice = $this->getOption()->getProduct()->getFinalPrice();
+                $price = $basePrice * ($this->_getData(self::KEY_PRICE) / 100);
+                return $price;
+            }
+
+            $price = $this->_getData(self::KEY_PRICE);
+            return empty($price) ? '0.00' : $price;
+        }
     }
