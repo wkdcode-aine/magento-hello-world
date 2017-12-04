@@ -12,6 +12,7 @@
     <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection" type="MiltonBayer\General\Model\ResourceModel\Fulltext\Collection" />
     <preference for="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" type="MiltonBayer\General\Block\Navigation\FilterRenderer" />
     <preference for="Magento\LayeredNavigation\Block\Navigation\FilterRendererInterface" type="MiltonBayer\General\Block\Navigation\FilterRendererInterface" />
+    <preference for="Magento\Search\Model\Search" type="MiltonBayer\General\Model\Search" />
 
     <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="MiltonBayer\General\Block\Product\ProductList\Toolbar" />
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="MiltonBayer\General\Block\Product\ListProduct" />
