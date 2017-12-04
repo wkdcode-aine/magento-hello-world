@@ -23,5 +23,8 @@
                 <argument name="template" xsi:type="string">MiltonBayer_General::product/list.phtml</argument>
             </action>
         </referenceBlock>
+
+        <referenceBlock name="catalog.compare.link" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true" />
     </body>
 </page>
