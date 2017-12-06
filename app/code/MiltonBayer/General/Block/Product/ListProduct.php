@@ -124,8 +124,6 @@
                 }
             }
 
-            // $this->setSortBy('special_price');
-
             return $this;
         }
 
