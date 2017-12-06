@@ -15,8 +15,7 @@
             $this->assign('filterItems', $filter->getItems());
             foreach($selectedFilters as $_selected) {
                 if( $filter->getRequestVar() == $_selected->getFilter()->getRequestVar() ) {
-                    $labels = $_selected->getLabel();
-                    $this->assign('selected', is_array($labels) ? $labels : [$labels]);
+                    $this->assign('selected', explode(",", $_selected->getValue()));
                 }
             }
             $html = $this->_toHtml();

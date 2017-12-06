@@ -9,6 +9,19 @@
         private $dataProvider;
 
         /**
+         * @var array
+         */
+        private $facets = [
+            '0_400' => ['value' => '0_400', 'count' => '1'],
+            '400_500' => ['value' => '400_500', 'count' => '1'],
+            '500_600' => ['value' => '500_600', 'count' => '1'],
+            '600_700' => ['value' => '600_700', 'count' => '1'],
+            '700_800' => ['value' => '700_800', 'count' => '1'],
+            '800_900' => ['value' => '800_900', 'count' => '1'],
+            '900_*' => ['value' => '900_*', 'count' => '1'],
+        ];
+
+        /**
          * @param \Magento\Catalog\Model\Layer\Filter\ItemFactory $filterItemFactory
          * @param \Magento\Store\Model\StoreManagerInterface $storeManager
          * @param \Magento\Catalog\Model\Layer $layer
@@ -58,6 +71,58 @@
         }
 
         /**
+         * Apply price range filter
+         *
+         * @param \Magento\Framework\App\RequestInterface $request
+         * @return $this
+         * @SuppressWarnings(PHPMD.NPathComplexity)
+         */
+        public function apply(\Magento\Framework\App\RequestInterface $request)
+        {
+            /**
+             * Filter must be string: $fromPrice-$toPrice
+             */
+            $filter = $request->getParam($this->getRequestVar());
+            if (!$filter || is_array($filter)) {
+                return $this;
+            }
+
+            $filterParams = explode(',', $filter);
+            $filter = $this->dataProvider->validateFilter($filterParams[0]);
+            if (!$filter) {
+                return $this;
+            }
+
+            sort($filterParams);
+
+            $to = null;
+            $from = null;
+            foreach($filterParams as $_filter) {
+                $to_from = explode("-", $_filter);
+
+                if( $from == null )  $from = $to_from[0];
+                if( $to == null || $to_from[0] == $to)  $to = $to_from[1];
+            }
+
+            $this->getLayer()->getProductCollection()->addFieldToFilter(
+                'price',
+                ['from' => $from, 'to' => empty($to) || $from == $to ? $to : $to - self::PRICE_DELTA]
+            );
+
+            foreach($filterParams as $_filter) {
+                $to_from = explode("-", $_filter);
+
+
+                //// FIX HERE!
+                $this->getLayer()->getState()->addFilter(
+                    $this->_createItem($this->_renderRangeLabel($to_from[0], $to_from[1]), $_filter)
+                );
+            }
+
+            return $this;
+        }
+
+        /**
          * Get data array for building attribute filter items
          *
          * @return array
@@ -69,19 +134,9 @@
             $attribute = $this->getAttributeModel();
             $this->_requestVar = $attribute->getAttributeCode();
 
-            $facets = [
-                '0_400' => ['value' => '0_400', 'count' => '1'],
-                '400_500' => ['value' => '400_500', 'count' => '1'],
-                '500_600' => ['value' => '500_600', 'count' => '1'],
-                '600_700' => ['value' => '600_700', 'count' => '1'],
-                '700_800' => ['value' => '700_800', 'count' => '1'],
-                '800_900' => ['value' => '800_900', 'count' => '1'],
-                '900_*' => ['value' => '900_*', 'count' => '1'],
-            ];
-
             $data = [];
-            if (count($facets) > 1) { // two range minimum
-                foreach ($facets as $key => $aggregation) {
+            if (count($this->facets) > 1) { // two range minimum
+                foreach ($this->facets as $key => $aggregation) {
                     $count = $aggregation['count'];
                     if (strpos($key, '_') === false) {
                         continue;

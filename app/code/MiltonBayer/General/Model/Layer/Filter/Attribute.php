@@ -49,9 +49,21 @@
                 return $this;
             }
             $attribute = $this->getAttributeModel();
+
+            if( strstr($attributeValue, ',') ) {
+                $attribute_value = explode(',', $attributeValue);
+            } else {
+                $attribute_value = [$attributeValue];
+            }
+            $all_options = $attribute->getSource()->getAllOptions(false);
+
+            $all_values = [];
+            foreach($all_options as $option) $all_values[] = $option['value'];
+            $search_values = array_diff($all_values, $attribute_value);
+
             /** @var \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $productCollection */
             $productCollection = $this->getLayer()->getProductCollection();
-            $productCollection->addFieldToFilter($attribute->getAttributeCode(), $attributeValue);
+            $productCollection->addFieldToFilter($attribute->getAttributeCode(), $search_values);
             $label = $this->getOptionText($attributeValue);
             $this->getLayer()
                 ->getState()

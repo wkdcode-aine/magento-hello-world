@@ -19,11 +19,16 @@
          * @var \Magento\Framework\Api\Search\SearchResultInterface
          */
         private $searchResult;
-        
+
         /**
          * @var \Magento\Framework\Api\FilterBuilder
          */
         private $filterBuilder;
+
+        /**
+         * @var \Magento\Framework\Api\Search\FilterGroup
+         */
+        private $filterGroup;
 
         /**
          * @deprecated 100.1.0
@@ -63,8 +68,8 @@
                 throw new \RuntimeException('Illegal state');
             }
 
-            if( !is_array($condition) && strstr($condition, ',') ) {
-                $condition = explode(',', $condition);
+            if(!is_array($condition) && strstr($condition, ',')) {
+                $condition = explode(",", $condition);
             }
 
             $this->getSearchCriteriaBuilder();
