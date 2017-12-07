@@ -95,29 +95,31 @@
 
             sort($filterParams);
 
+            $facets = $this->facets;
+            foreach($filterParams as $param) {
+                $param = str_replace('-', '_', $param);
+                unset($facets[$param]);
+            }
+
             $to = null;
             $from = null;
-            foreach($filterParams as $_filter) {
-                $to_from = explode("-", $_filter);
+            foreach($facets as $_filter => $unused) {
+                $to_from = explode("_", $_filter);
 
                 if( $from == null )  $from = $to_from[0];
                 if( $to == null || $to_from[0] == $to)  $to = $to_from[1];
             }
+
+            if( $to == '*' ) $to = '';
 
             $this->getLayer()->getProductCollection()->addFieldToFilter(
                 'price',
                 ['from' => $from, 'to' => empty($to) || $from == $to ? $to : $to - self::PRICE_DELTA]
             );
 
-            foreach($filterParams as $_filter) {
-                $to_from = explode("-", $_filter);
-
-
-                //// FIX HERE!
-                $this->getLayer()->getState()->addFilter(
-                    $this->_createItem($this->_renderRangeLabel($to_from[0], $to_from[1]), $_filter)
-                );
-            }
+            $this->getLayer()->getState()->addFilter(
+                $this->_createItem($this->_renderRangeLabel($from, $to), implode(",", $filterParams))
+            );
 
             return $this;
         }

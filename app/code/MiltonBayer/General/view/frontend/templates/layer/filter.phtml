@@ -20,7 +20,7 @@
         <li class="item <?= empty($selected) || !in_array($value, $selected) ? 'active' : '' ?>">
             <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
                 <?php $value = $filterItem->getValue(); ?>
-                <?= /* @escapeNotVerified */ $filterItem->getLabel() . " - " . $value . " - " . var_dump($selected) ?>
+                <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
             </a>
         </li>
     <?php endforeach ?>
