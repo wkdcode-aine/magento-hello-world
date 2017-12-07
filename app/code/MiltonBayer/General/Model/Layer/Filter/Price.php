@@ -101,7 +101,6 @@
                 $param = str_replace('-', '_', $param);
                 unset($facets[$param]);
             }
-            // die(var_dump($facets));
 
             $to = null;
             $from = null;
@@ -118,8 +117,6 @@
                 'price',
                 ['from' => $from, 'to' => empty($to) || $from == $to ? $to : $to - self::PRICE_DELTA]
             );
-
-            // die($from . " - " . $to);
 
             $this->getLayer()->getState()->addFilter(
                 $this->_createItem($this->_renderRangeLabel($from, $to), implode(",", $filterParams))

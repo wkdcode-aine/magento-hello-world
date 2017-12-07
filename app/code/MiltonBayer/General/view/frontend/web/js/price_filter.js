@@ -85,7 +85,7 @@ define(["jquery"], function($){
             $.each(
                 params,
                 (index, param) => {
-                    if( param.indexOf(request_var) > -1 ) {
+                    if( param !== undefined && param.indexOf(request_var) > -1 ) {
                         params.splice(index, 1);
                     }
                 }
