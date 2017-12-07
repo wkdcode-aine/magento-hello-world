@@ -5,40 +5,97 @@
  * @var $block \MiltonBayer\General\Block\Category\DesignADoor
  */
 ?>
-
-<?php if( $block->showDoorBuilder() ) { ?>
-
+<?php if( $block->showDoorBuilder() ): ?>
     <div class="">
         <ul class="tabs">
-            <li class="js-tab js-intro-tab active">
-                Intro
+            <li class="js-tab js-door-search" data-tab="js-door-search" data-tab-index="1">
+                Select a Door
             </li>
-            <li class="js-tab js-door-list">
-                Door List
+            <li class="js-tab js-door-size" data-tab="js-door-size" data-tab-index="2">
+                Select a Size
             </li>
-            <li class="js-tab js-door-detail">
-                Detail
+            <li class="js-tab js-door-colour" data-tab="js-door-colour" data-tab-index="3">
+                Select Colour
             </li>
-            <li class="js-tab js-door-size">
-                Size
+            <li class="js-tab js-choose-extras" data-tab="js-choose-extras" data-tab-index="3">
+                Choose Extras
             </li>
         </ul>
         <div class="tab-content">
-            <div class="js-tab js-intro-tab active">
+            <div class="js-tab-pane js-intro-tab active">
                 Some text here<br />
-                <div class="js-next" data-tab="door-selector">Build a door...</div>
+                <div class="js-next" data-tab="js-door-search">Design a door...</div>
             </div>
-            <div class="js-tab js-door-list">
-                spinner!
+            <div class="js-tab-pane js-door-search tab-pane door-search">
+                <div class="col-xs-2 filters"></div>
+                <div class="col-xs-10 js-results results"></div>
             </div>
         </div>
     </div>
 
-    <!-- <script type="text/x-magento-init">
+    <script type="text/x-magento-init">
         {
             "*": {
                 "category_door_configurator": {}
             }
         }
-    </script> -->
-<?php } ?>
+    </script>
+
+    <style>
+        .tab-content .js-tab-pane {
+            display: none;
+        }
+
+        .tab-content .js-tab-pane.active {
+            display: block;
+        }
+
+        .tab-content .tab-pane .door-search .filters {
+            background: #cdcdcd;
+        }
+
+        .tabs {
+            border: 1px solid black;
+            padding: 0;
+        }
+
+        .tabs .js-tab {
+            width: calc(25% - 10px);
+            float: left;
+            list-style: none;
+            margin: 0 auto;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .tabs .js-tab.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .col-xs-2 {
+            width: 20%;
+            float: left;
+        }
+
+        .col-xs-3 {
+            width: 25%;
+            float: left;
+        }
+
+        .col-xs-4 {
+            width: 33.333333333%;
+            float: left;
+        }
+
+        .col-xs-8 {
+            width: 66.666666666%;
+            float: left;
+        }
+
+        .col-xs-10 {
+            width: 80%;
+            float: left;
+        }
+    </style>
+<?php endif; ?>
