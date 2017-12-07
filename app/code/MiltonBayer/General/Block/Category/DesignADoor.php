@@ -30,7 +30,7 @@
          */
         public function showDoorBuilder()
         {
-            return true;//$this->getCurrentCategory()->getData('show_design_a_door') == 1;
+            return $this->getCurrentCategory()->getData('show_design_a_door') == 1;
         }
 
         /**

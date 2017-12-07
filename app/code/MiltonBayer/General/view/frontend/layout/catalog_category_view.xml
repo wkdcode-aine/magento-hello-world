@@ -21,9 +21,6 @@
         <referenceContainer name="content">
             <referenceBlock name="catalog.compare.sidebar" remove="true" />
             <referenceContainer name="sidebar.additional" remove="true" />
-        </referenceContainer>
-
-        <referenceContainer name="columns.top">
             <block class="MiltonBayer\General\Block\Category\DesignADoor" name="design-a-door" template="MiltonBayer_General::category/design-a-door.phtml" />
         </referenceContainer>
     </body>
