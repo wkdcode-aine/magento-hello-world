@@ -1,0 +1,136 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Pager template
+ *
+ * @see \Magento\Theme\Block\Html\Pager
+ */
+?>
+<?php if ($block->getCollection()->getSize()): ?>
+
+    <?php if ($block->getUseContainer()): ?>
+    <div class="pager">
+    <?php endif ?>
+
+
+        <?php if ($block->getShowAmounts()): ?>
+        <p class="toolbar-amount">
+            <span class="toolbar-number">
+            <?php if ($block->getLastPageNum()>1): ?>
+                <?= /* @escapeNotVerified */ __('Items %1 to %2 of %3 total', $block->getFirstNum(), $block->getLastNum(), $block->getTotalNum()) ?>
+            <?php elseif ($block->getTotalNum() == 1): ?>
+                <?= /* @escapeNotVerified */ __('%1 Item', $block->getTotalNum()) ?>
+            <?php else: ?>
+                <?= /* @escapeNotVerified */ __('%1 Item(s)', $block->getTotalNum()) ?>
+            <?php endif; ?>
+            </span>
+        </p>
+        <?php endif ?>
+
+        <?php if ($block->getLastPageNum()>1): ?>
+        <div class="pages">
+            <strong class="label pages-label" id="paging-label"><?= /* @escapeNotVerified */ __('Page') ?></strong>
+            <ul class="items pages-items" aria-labelledby="paging-label">
+                <li class="item pages-item-previous">
+                    <?php $text = $block->getAnchorTextForPrevious() ? $block->getAnchorTextForPrevious() : '';?>
+                    <<?= !$block->isFirstPage() ? 'a' : 'div'; ?> class="<?= /* @escapeNotVerified */ $text ? 'link ' : 'action ' ?> previous" href="<?= /* @escapeNotVerified */ $block->getPreviousPageUrl() ?>" title="<?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?>" >
+                        <span class="label"><?= /* @escapeNotVerified */ __('Page') ?></span>
+                        <span><?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?></span>
+                    </<?= !$block->isFirstPage() ? 'a' : 'div'; ?>>
+                </li>
+
+                <li class="item">
+                    <select class="page-selector" onChange="window.location = this.value">
+                        <option><?= __('Go To') ?></option>
+                        <?php for ($_page = 1; $_page <= $block->getLastPageNum(); $_page++): ?>
+                            <option value="<?= $block->getPageUrl($_page) ?>">
+                                <?= /* @escapeNotVerified */ $_page ?>
+                            </option>
+                        <?php endfor;?>
+                    </select>
+                </li>
+
+            <?php if ($block->canShowFirst()): ?>
+                <li class="item">
+                    <a class="page first" href="<?= /* @escapeNotVerified */ $block->getFirstPageUrl() ?>">
+                        <span class="label"><?= /* @escapeNotVerified */ __('Page') ?></span>
+                        <span>1</span>
+                    </a>
+                </li>
+            <?php endif;?>
+
+            <?php if ($block->canShowPreviousJump()): ?>
+                <li class="item">
+                    <a class="page previous jump" title="" href="<?= /* @escapeNotVerified */ $block->getPreviousJumpUrl() ?>">
+                        <span>...</span>
+                    </a>
+                </li>
+            <?php endif;?>
+
+            <?php foreach ($block->getFramePages() as $_page): ?>
+                <?php if ($block->isPageCurrent($_page)): ?>
+                    <li class="item current">
+                        <strong class="page">
+                            <span class="label"><?= /* @escapeNotVerified */ __('You\'re currently reading page') ?></span>
+                            <span><?= /* @escapeNotVerified */ $_page ?></span>
+                        </strong>
+                    </li>
+                <?php else: ?>
+                    <li class="item">
+                        <a href="<?= /* @escapeNotVerified */ $block->getPageUrl($_page) ?>" class="page">
+                            <span class="label"><?= /* @escapeNotVerified */ __('Page') ?></span>
+                            <span><?= /* @escapeNotVerified */ $_page ?></span>
+                        </a>
+                    </li>
+                <?php endif;?>
+            <?php endforeach;?>
+
+            <?php if ($block->canShowNextJump()): ?>
+                <li class="item">
+                    <a class="page next jump" title="" href="<?= /* @escapeNotVerified */ $block->getNextJumpUrl() ?>">
+                        <span>...</span>
+                    </a>
+                </li>
+            <?php endif;?>
+
+            <?php if ($block->canShowLast()): ?>
+              <li class="item">
+                  <a class="page last" href="<?= /* @escapeNotVerified */ $block->getLastPageUrl() ?>">
+                      <span class="label"><?= /* @escapeNotVerified */ __('Page') ?></span>
+                      <span><?= /* @escapeNotVerified */ $block->getLastPageNum() ?></span>
+                  </a>
+              </li>
+            <?php endif;?>
+
+
+                <li class="item pages-item-next">
+                    <?php $text = $block->getAnchorTextForNext() ? $block->getAnchorTextForNext() : '';?>
+                    <<?= !$block->isLastPage() ? 'a' : 'div' ?> class="<?= /* @escapeNotVerified */ $text ? 'link ' : 'action ' ?> next" href="<?= /* @escapeNotVerified */ $block->getNextPageUrl() ?>" title="<?= /* @escapeNotVerified */ $text ? $text : __('Next') ?>">
+                        <span class="label"><?= /* @escapeNotVerified */ __('Page') ?></span>
+                        <span><?= /* @escapeNotVerified */ $text ? $text : __('Next') ?></span>
+                    </<?= !$block->isLastPage() ? 'a' : 'div' ?>>
+                </li>
+            </ul>
+        </div>
+        <?php endif; ?>
+
+    <?php if ($block->getUseContainer()): ?>
+    </div>
+    <?php endif ?>
+
+<?php endif ?>
+
+<style>
+    .page-selector {
+        height: 30px;
+        overflow: hidden;
+    }
+</style>
