@@ -14,10 +14,10 @@
  * @var $block \Magento\LayeredNavigation\Block\Navigation\FilterRenderer
  */
 ?>
-<ol class="items">
-    <?php foreach ($filterItems as $filterItem): ?>
+<ol class="items js-items <?= $is_price ? 'js-price' : ''; ?>" data-param="<?= $param; ?>">
+    <?php foreach ($filterItems as $index => $filterItem): ?>
         <?php $value = $filterItem->getValue(); ?>
-        <li class="item <?= empty($selected) || !in_array($value, $selected) ? 'active' : '' ?>">
+        <li class="item js-item <?= empty($selected) || !in_array($value, $selected) ? 'active js-active' : '' ?>" data-index="<?= $index; ?>" data-value="<?= $value; ?>">
             <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
                 <?php $value = $filterItem->getValue(); ?>
                 <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>

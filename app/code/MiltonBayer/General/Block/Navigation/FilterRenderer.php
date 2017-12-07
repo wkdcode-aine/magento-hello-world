@@ -18,6 +18,8 @@
                     $this->assign('selected', explode(",", $_selected->getValue()));
                 }
             }
+            $this->assign('is_price', $filter->getRequestVar() == 'price');
+            $this->assign('param', $filter->getRequestVar());
             $html = $this->_toHtml();
             $this->assign('filterItems', []);
             return $html;
