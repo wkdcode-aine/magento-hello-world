@@ -18,7 +18,7 @@ define([
                 this._bind($(this.options.modeControl), this.options.mode, this.options.modeDefault);
                 this._bind($(this.options.limitControl), this.options.limit, this.options.limitDefault);
                 this._bind($(this.options.manufacturerControl), this.options.manufacturer, this.options.manufacturerDefault);
-                this._bindMulti($('.js-sort-select'), this.options.order, this.options.direction, 'special_price-asc');
+                this._bindMulti($('.js-sort-select'), this.options.order, this.options.direction, 'price-asc');
             },
 
             /** @inheritdoc */
