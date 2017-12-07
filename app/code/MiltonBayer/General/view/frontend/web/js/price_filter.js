@@ -5,7 +5,7 @@ define(["jquery"], function($){
     let total_price_items = $(item_selector).length;
 
     // forces the user to select only a continuous price range
-    $(item_selector + " a").click(function(e) {
+    $(item_selector + " div").click(function(e) {
 
         let is_selected = $(this).parent().hasClass('js-active');
         let parent_index = $(this).parent().data('index');
@@ -17,7 +17,7 @@ define(["jquery"], function($){
         else if( !is_selected && selectItems(parent_index, previous_selected, next_selected) ) return true;
 
         e.preventDefault();
-        window.location = updateUrl($(this).attr('href'));
+        window.location = updateUrl($(this).data('href'));
         return false;
     });
 

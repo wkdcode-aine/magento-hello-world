@@ -18,10 +18,15 @@
     <?php foreach ($filterItems as $index => $filterItem): ?>
         <?php $value = $filterItem->getValue(); ?>
         <li class="item js-item <?= empty($selected) || !in_array($value, $selected) ? 'active js-active' : '' ?>" data-index="<?= $index; ?>" data-value="<?= $value; ?>">
-            <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
-                <?php $value = $filterItem->getValue(); ?>
-                <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
-            </a>
+            <?php if( $is_price ): ?>
+                <div class="" data-href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
+                    <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
+                </div>
+            <?php else: ?>
+                <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
+                    <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
+                </a>
+            <?php endif; ?>
         </li>
     <?php endforeach ?>
 </ol>
@@ -32,7 +37,7 @@
         background: #006bb4;
     }
 
-    ol.items li.item.active a {
+    ol.items li.item.active a, ol.items li.item.active div {
         color: #fff;
     }
 </style>
