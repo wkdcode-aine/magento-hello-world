@@ -12,10 +12,10 @@ var config = {
         mixins: {
             "Magento_Catalog/js/product/list/toolbar" : {
                 'MiltonBayer_General/js/product/list/toolbar-mixin': true
-            },
-            "MiltonBayer_General/js/category/door-configurator": {
-                "MiltonBayer_General/js/category/door-configurator/door-select-mixin": true,
-                "MiltonBayer_General/js/category/door-configurator/door-size-mixin": true,
+            // },
+            // "MiltonBayer_General/js/category/door-configurator": {
+            //     "MiltonBayer_General/js/category/door-configurator/door-select-mixin": true,
+            //     "MiltonBayer_General/js/category/door-configurator/door-size-mixin": true,
             }
         }
     }

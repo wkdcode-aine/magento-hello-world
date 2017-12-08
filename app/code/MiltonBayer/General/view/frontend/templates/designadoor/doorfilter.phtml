@@ -1,6 +1,6 @@
-<h3>Header</h3>
-text
+<div class="filter-container">
+    <h3><?= __('Refine your search') ?></h3>
+    <?= __('Click on any of the filters below to turn them on/off') ?>
 
-<div class="filter-list js-filter-list">
-
+    <?= $block->getChildChildHtml('category_designadoor_doorfilter_content_filters') ?>
 </div>

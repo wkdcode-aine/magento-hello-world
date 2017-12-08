@@ -52,7 +52,7 @@ define(["jquery"], function($){
         $.ajax({
             url: '/ajax/designadoor/doorlist',
             success: ( response ) => {
-                $(".js-tab-pane.js-door-search .js-results").html(response.html);
+                $(".js-tab-pane.js-door-search .js-results").html(response);
             }
         })
     };

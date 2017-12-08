@@ -7,10 +7,11 @@
     {
         /**
          * @param FilterInterface $filter
-         * @param array $selectedFilters
+         * @param array $selected_filters
+         * @param boolean $show_design_a_door
          * @return string
          */
-        public function renderOptions(FilterInterface $filter, $selectedFilters)
+        public function renderOptions(FilterInterface $filter, array $selected_filters, boolean $show_design_a_door)
         {
             $this->assign('filterItems', $filter->getItems());
             foreach($selectedFilters as $_selected) {
@@ -19,6 +20,7 @@
                 }
             }
             $this->assign('is_price', $filter->getRequestVar() == 'price');
+            $this->assign('designadoor', $show_design_a_door);
             $this->assign('param', $filter->getRequestVar());
             $html = $this->_toHtml();
             $this->assign('filterItems', []);

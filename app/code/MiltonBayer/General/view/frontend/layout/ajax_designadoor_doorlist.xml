@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="MiltonBayer\General\Block\Designadoor\Doorlist"
+               name="category.designadoor.doorlist"
+               template="MiltonBayer_General::designadoor/doorlist.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="header.container" remove="true" />
+        <referenceBlock name="page.top" remove="true" />
+        <referenceBlock name="footer" remove="true" />
+        <referenceBlock name="absolute_footer" remove="true" />
+        <referenceBlock name="copyright" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true" />
+    </body>
+</page>

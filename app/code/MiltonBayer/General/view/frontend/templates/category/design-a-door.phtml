@@ -22,13 +22,17 @@
             </li>
         </ul>
         <div class="tab-content">
-            <div class="js-tab-pane js-intro-tab active">
+            <!-- <div class="js-tab-pane js-intro-tab active">
                 Some text here<br />
                 <div class="js-next" data-tab="js-door-search">Design a door...</div>
-            </div>
-            <div class="js-tab-pane js-door-search tab-pane door-search">
-                <div class="col-xs-2 filters"></div>
-                <div class="col-xs-10 js-results results"></div>
+            </div> -->
+            <div class="js-tab-pane js-door-search tab-pane door-search active">
+                <div class="columns page-layout-2column-left">
+                    <div class="col-xs-2 sidebar sidebar-main">
+                        <?= $block->getChildHtml('category_designadoor_doorfilter_content') ?>
+                    </div>
+                    <div class="col-xs-10 js-results results"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -96,6 +100,21 @@
         .col-xs-10 {
             width: 80%;
             float: left;
+            position: relative;
+        }
+
+        .js-door-search{
+
+        }
+
+        .js-door-search .filter-options-content {
+            position: relative;
+            box-shadow: none;
+            visibility: visible;
+            border: none;
+        }
+        .js-door-search .filter-options-item {
+            width: 100%;
         }
     </style>
 <?php endif; ?>

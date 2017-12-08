@@ -3,5 +3,4 @@
 
     class Doorfilter extends \Magento\Framework\View\Element\Template
     {
-        
     }

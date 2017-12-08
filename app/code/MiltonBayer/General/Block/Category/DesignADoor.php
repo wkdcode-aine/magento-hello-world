@@ -16,9 +16,7 @@
          */
         public function __construct(
             \Magento\Framework\View\Element\Template\Context $context,
-            \Magento\Catalog\Model\Layer\Resolver $layerResolver,
             \Magento\Framework\Registry $registry,
-            \Magento\Catalog\Helper\Category $categoryHelper,
             array $data = []
         ) {
             $this->_coreRegistry = $registry;

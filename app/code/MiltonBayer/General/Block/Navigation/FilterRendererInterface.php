@@ -14,8 +14,9 @@
          * Render filter
          *
          * @param FilterInterface $filter
-         * @param array $selectedFilters
+         * @param array $selected_filters
+         * @param boolean $show_design_a_door
          * @return string
          */
-        public function renderOptions(FilterInterface $filter, array $selectedFilters);
+        public function renderOptions(FilterInterface $filter, array $selected_filters, boolean $show_design_a_door);
     }

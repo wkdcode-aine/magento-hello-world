@@ -10,9 +10,9 @@
 /**
  * Category layered navigation
  *
- * @var $block \Magento\LayeredNavigation\Block\Navigation
+ * @var $block \MiltonBayer\General\Block\Navigation
  */
- $selectedFilters = $block->getLayer()->getState()->getFilters();
+$selectedFilters = $block->getLayer()->getState()->getFilters();
 ?>
 
 <?php if ($block->canShowBlock()): ?>
@@ -28,9 +28,9 @@
                     <?php if (!$wrapOptions): ?>
                         <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Refine your search') ?></strong>
                     <?php  $wrapOptions = true; endif; ?>
-                    <div data-role="collapsible" class="filter-options-item">
+                    <div class="filter-options-item">
                         <div data-role="title" class="filter-options-title"><?= /* @escapeNotVerified */ __($filter->getName()) ?></div>
-                        <div data-role="content" class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->renderOptions($filter, $selectedFilters) ?></div>
+                        <div data-role="content" class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->renderOptions($filter, $selectedFilters, $block->getIsDesignADoor()) ?></div>
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>

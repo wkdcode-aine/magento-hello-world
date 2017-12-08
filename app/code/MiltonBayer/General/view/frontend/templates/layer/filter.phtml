@@ -1,35 +1,26 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-// @codingStandardsIgnoreFile
-
-?>
-<?php
-/**
  * Template for filter items block
  *
  * @var $block \Magento\LayeredNavigation\Block\Navigation\FilterRenderer
  */
+echo '<ol class="items js-items ' . ($is_price ? 'js-price' : '') . '" data-param="' . $param . '">';
+    foreach ($filterItems as $index => $filterItem):
+        $value = $filterItem->getValue();
+        echo '<li class="item js-item ' . (empty($selected) || !in_array($value, $selected) ? 'active js-active' : '') . '" data-index="' . $index . '" data-value="' . $value . '">';
+            if( $is_price ):
+                echo '<div class="" data-href="' . $block->escapeUrl($filterItem->getUrl()) . '">';
+                    echo $filterItem->getLabel();
+                echo '</div>';
+            else:
+                echo '<a href="' . $block->escapeUrl($filterItem->getUrl()) . '">';
+                    echo $filterItem->getLabel();
+                echo '</a>';
+            endif;
+        echo '</li>';
+    endforeach;
+echo '</ol>';
 ?>
-<ol class="items js-items <?= $is_price ? 'js-price' : ''; ?>" data-param="<?= $param; ?>">
-    <?php foreach ($filterItems as $index => $filterItem): ?>
-        <?php $value = $filterItem->getValue(); ?>
-        <li class="item js-item <?= empty($selected) || !in_array($value, $selected) ? 'active js-active' : '' ?>" data-index="<?= $index; ?>" data-value="<?= $value; ?>">
-            <?php if( $is_price ): ?>
-                <div class="" data-href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
-                    <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
-                </div>
-            <?php else: ?>
-                <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
-                    <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>
-                </a>
-            <?php endif; ?>
-        </li>
-    <?php endforeach ?>
-</ol>
 
 
 <style>

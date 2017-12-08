@@ -1,0 +1,12 @@
+<referenceContainer name="content">
+    <block class="MiltonBayer\General\Block\Category\DesignADoor" name="designadoor" template="MiltonBayer_General::category/design-a-door.phtml">
+        <container name="category.designadoor.doorfilter.content" as="category_designadoor_doorfilter_content">
+            <block class="MiltonBayer\General\Block\Designadoor\Doorfilter" name="category.designadoor.doorfilter" as="doorfilter" template="MiltonBayer_General::designadoor/doorfilter.phtml"/>
+
+            <container name="category.designadoor.doorfilter.content.filters" as="category_designadoor_doorfilter_content_filters"></container>
+        </container>
+
+    </block>
+
+</referenceContainer>
+<move element="catalog.leftnav" destination="category.designadoor.doorfilter.content.filters" />
