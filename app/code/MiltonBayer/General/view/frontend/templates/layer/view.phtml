@@ -13,6 +13,7 @@
  * @var $block \MiltonBayer\General\Block\Navigation
  */
 $selectedFilters = $block->getLayer()->getState()->getFilters();
+$is_design_a_door = $block->getIsDesignADoor();
 ?>
 
 <?php if ($block->canShowBlock()): ?>
@@ -30,13 +31,19 @@ $selectedFilters = $block->getLayer()->getState()->getFilters();
                     <?php  $wrapOptions = true; endif; ?>
                     <div class="filter-options-item">
                         <div data-role="title" class="filter-options-title"><?= /* @escapeNotVerified */ __($filter->getName()) ?></div>
-                        <div data-role="content" class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->renderOptions($filter, $selectedFilters, $block->getIsDesignADoor()) ?></div>
+                        <div data-role="content" class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->renderOptions($filter, $selectedFilters, $is_design_a_door) ?></div>
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
 
             <div class="block-actions filter-actions">
-                <a href="<?= /* @escapeNotVerified */ $block->getClearUrl() ?>" class="action clear filter-clear <?php $block->getLayer()->getState()->getFilters() ?: 'disabled'; ?>"><span><?= /* @escapeNotVerified */ __('Clear All') ?></span></a>
+                <?php
+                    if( $is_design_a_door ):
+                        echo '<div class="action clear filter-clear js-filter-clear"><span>' . __('Clear All') . '</span></div>';
+                    else:
+                        echo '<a href="' . $block->getClearUrl() . '" class="action clear filter-clear ' . ($block->getLayer()->getState()->getFilters() ?: 'disabled') . '"><span>' . __('Clear All') . '</span></a>';
+                    endif;
+                ?>
             </div>
             <?php if (!$wrapOptions): ?>
                 <script>
@@ -51,10 +58,20 @@ $selectedFilters = $block->getLayer()->getState()->getFilters();
     </div>
 <?php endif; ?>
 
-<script type="text/x-magento-init">
-    {
-        ".js-items.js-price": {
-            "price_filter": {}
+<?php if( $is_design_a_door ): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "category_filter": {}
+            }
         }
-    }
-</script>
+    </script>
+<?php else: ?>
+    <script type="text/x-magento-init">
+        {
+            ".js-items.js-price": {
+                "price_filter": {}
+            }
+        }
+    </script>
+<?php endif; ?>

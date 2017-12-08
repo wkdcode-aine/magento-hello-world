@@ -4,6 +4,13 @@
     class Item extends \Magento\Catalog\Model\Layer\Filter\Item
     {
         /**
+         * Core registry
+         *
+         * @var \Magento\Framework\Registry
+         */
+        protected $_coreRegistry = null;
+
+        /**
          * @var \Magento\Framework\App\RequestInterface $request
          */
         protected $_request;
@@ -11,16 +18,19 @@
         /**
          * Construct
          *
+         * @param \Magento\Framework\Registry $registry
          * @param \Magento\Framework\UrlInterface $url
          * @param \Magento\Theme\Block\Html\Pager $htmlPagerBlock
          * @param array $data
          */
         public function __construct(
             \Magento\Framework\App\RequestInterface $request,
+            \Magento\Framework\Registry $registry,
             \Magento\Framework\UrlInterface $url,
             \Magento\Theme\Block\Html\Pager $htmlPagerBlock,
             array $data = []
         ) {
+            $this->_coreRegistry = $registry;
             $this->_request = $request;
             parent::__construct($url, $htmlPagerBlock, $data);
         }
@@ -58,5 +68,26 @@
             ];
 
             return $this->_url->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $query]);
+        }
+
+        /**
+         *
+         */
+        public function getDesignADoorUrl()
+        {
+            return 'woop!';
+        }
+
+        /**
+         * Retrieve current category model object
+         *
+         * @return \Magento\Catalog\Model\Category
+         */
+        private function getCurrentCategory()
+        {
+            if (!$this->hasData('current_category')) {
+                $this->setData('current_category', $this->_coreRegistry->registry('current_category'));
+            }
+            return $this->getData('current_category');
         }
     }

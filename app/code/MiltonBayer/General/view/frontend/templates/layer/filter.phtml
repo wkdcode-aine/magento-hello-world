@@ -8,7 +8,7 @@ echo '<ol class="items js-items ' . ($is_price ? 'js-price' : '') . '" data-para
     foreach ($filterItems as $index => $filterItem):
         $value = $filterItem->getValue();
         echo '<li class="item js-item ' . (empty($selected) || !in_array($value, $selected) ? 'active js-active' : '') . '" data-index="' . $index . '" data-value="' . $value . '">';
-            if( $is_price ):
+            if( $designadoor || $is_price ):
                 echo '<div class="" data-href="' . $block->escapeUrl($filterItem->getUrl()) . '">';
                     echo $filterItem->getLabel();
                 echo '</div>';

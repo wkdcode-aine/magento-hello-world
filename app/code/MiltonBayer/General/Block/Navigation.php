@@ -11,6 +11,7 @@
         protected $_coreRegistry = null;
 
         /**
+         * @param \Magento\Framework\Registry $registry
          * @param Template\Context $context
          * @param \Magento\Catalog\Model\Layer\Resolver $layerResolver
          * @param \Magento\Catalog\Model\Layer\FilterList $filterList
