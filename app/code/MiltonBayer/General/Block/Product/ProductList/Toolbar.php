@@ -156,4 +156,13 @@
             $this->_availableManufacturers = $options->toOptionArray();
             return $this;
         }
+
+        /**
+         * Get the default mode to show on the search
+         * @return string
+         */
+        public function getDefaultMode()
+        {
+            return $this->_productListHelper->getDefaultViewMode($this->getModes());
+        }
     }

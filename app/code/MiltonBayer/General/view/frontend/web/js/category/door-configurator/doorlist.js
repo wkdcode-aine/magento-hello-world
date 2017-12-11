@@ -50,7 +50,7 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
         );
 
         if( $(".js-manufacturer-options").length > 0 && $(".js-manufacturer-options").val() !== '' )  params.manufacturer = $(".js-manufacturer-options").val();
-        if( $(".js-view-modes .js-modes-mode.active").length > 0 && $(".js-view-modes .js-modes-mode.active").data('value') != 'grid' )  params.product_list_mode = $(".js-view-modes .js-modes-mode.active").data('value');
+        if( $(".js-view-modes .js-modes-mode.active").length > 0 && $(".js-view-modes .js-modes-mode.active").data('value') != $(".js-view-modes").data('default') )  params.product_list_mode = $(".js-view-modes .js-modes-mode.active").data('value');
 
         params.cat = $("input#category_id").val();
 
