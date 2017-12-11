@@ -13,8 +13,16 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
         // forces the user to select only a continuous price range
         $(".js-items.js-price .js-item div").click(e => {
             priceSelect.filterClick(e.currentTarget);
+
+            $(".js-manufacturer-options").val('');
             _this.getList();
         });
+
+        $(".js-filter-clear").click(e => {
+            $(".js-items .js-item").addClass('active js-active');
+            $(".js-manufacturer-options").val('');
+            _this.getList();
+        })
 
         _this.getList();
     };
@@ -41,6 +49,8 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
             }
         );
 
+        if( $(".js-manufacturer-options").length > 0 && $(".js-manufacturer-options").val() !== '' ) params.manufacturer = $(".js-manufacturer-options").val();
+
         params.cat = $("input#category_id").val();
 
         let _params = []
@@ -59,7 +69,7 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
 
                     last_param_str = _params.join("&");
 
-                    console.log(last_param_str);
+                    $(".js-manufacturer-options").bind('change', e => _this.getList());
                 }
             });
         }
