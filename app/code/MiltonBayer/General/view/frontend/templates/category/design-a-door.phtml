@@ -29,7 +29,7 @@
             <div class="js-tab-pane js-door-search tab-pane door-search active">
                 <div class="columns page-layout-2column-left">
                     <div class="col-xs-2 sidebar sidebar-main">
-                        <?= $block->getChildHtml('category_designadoor_doorfilter_content') ?>
+                        <?= $block->getChildBlock('category_designadoor_doorfilter')->renderOptions(11) ?>
                     </div>
                     <div class="col-xs-10 js-results results"></div>
                 </div>

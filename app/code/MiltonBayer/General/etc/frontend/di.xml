@@ -11,4 +11,6 @@
             <argument name="filterList" xsi:type="object">searchFilterList</argument>
         </arguments>
     </virtualType>
+
+    <preference for="MiltonBayer\General\Block\Designadoor\DoorfilterInterface" type="MiltonBayer\General\Block\Designadoor\Doorfilter" />
 </config>
