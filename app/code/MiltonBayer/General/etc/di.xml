@@ -11,6 +11,7 @@
     <preference for="Magento\CatalogSearch\Model\Layer\Filter\Price" type="MiltonBayer\General\Model\Layer\Filter\Price" />
     <preference for="Magento\CatalogSearch\Model\Layer\Filter\Attribute" type="MiltonBayer\General\Model\Layer\Filter\Attribute" />
     <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection" type="MiltonBayer\General\Model\ResourceModel\Fulltext\Collection" />
+    <preference for="Magento\Eav\Model\Entity\Attribute\Source\Table" type="MiltonBayer\General\Model\Entity\Attribute\Source\Table" />
     <preference for="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" type="MiltonBayer\General\Block\Navigation\FilterRenderer" />
     <preference for="Magento\LayeredNavigation\Block\Navigation\FilterRendererInterface" type="MiltonBayer\General\Block\Navigation\FilterRendererInterface" />
     <preference for="Magento\Search\Model\Search" type="MiltonBayer\General\Model\Search" />
