@@ -5,4 +5,10 @@
             <argument name="filterList" xsi:type="object">categoryFilterList</argument>
         </arguments>
     </virtualType>
+
+    <virtualType name="Magento\LayeredNavigation\Block\Navigation\Search" type="MiltonBayer\General\Block\Navigation">
+        <arguments>
+            <argument name="filterList" xsi:type="object">searchFilterList</argument>
+        </arguments>
+    </virtualType>
 </config>

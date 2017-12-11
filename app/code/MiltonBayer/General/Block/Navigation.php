@@ -36,7 +36,7 @@
         public function getIsDesignADoor()
         {
             $category = $this->getCurrentCategory();
-            return $category->getData('show_design_a_door') == 1;
+            return $category != null && $category->getData('show_design_a_door') == 1;
         }
 
         /**
