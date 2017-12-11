@@ -14,9 +14,9 @@
         public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
         {
             $setup->startSetup();
+            $connection = $setup->getConnection();
             if (version_compare($context->getVersion(), '1.0.2', '<')) {
 
-                $connection = $setup->getConnection();
 
                 $connection->addColumn(
                     $setup->getTable('catalog_product_option'),
@@ -37,6 +37,21 @@
                 );
             }
 
+            if( version_compare($context->getVersion(), '1.0.4', '<') ) {
+                $connection->addColumn(
+                    $setup->getTable('eav_attribute'),
+                    'search_excludes_selected',
+                    ['type' => Table::TYPE_BOOLEAN, 'default' => 0, 'comment' => 'Request param is not used to limit results to that value, instead to exclude the value from results']
+                );
+
+                $connection->addColumn(
+                    $setup->getTable('eav_attribute_option'),
+                    'searchable_option',
+                    ['type' => Table::TYPE_BOOLEAN, 'default' => 1, 'comment' => 'Option can be used in filters and dropdowns to search/exclude products matching this attribute id']
+                );
+            }
+
             $setup->endSetup();
         }
+
     }

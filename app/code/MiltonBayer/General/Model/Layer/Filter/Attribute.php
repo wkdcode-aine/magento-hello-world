@@ -55,11 +55,15 @@
             } else {
                 $attribute_value = [$attributeValue];
             }
-            $all_options = $attribute->getSource()->getAllOptions(false);
+            if( $attribute->getData('search_excludes_selected') == 1 ) {
+                $all_options = $attribute->getSource()->getAllOptions(false);
 
-            $all_values = [];
-            foreach($all_options as $option) $all_values[] = $option['value'];
-            $search_values = array_diff($all_values, $attribute_value);
+                $all_values = [];
+                foreach($all_options as $option) $all_values[] = $option['value'];
+                $search_values = array_diff($all_values, $attribute_value);
+            } else {
+                $search_values = $attributeValue;
+            }
 
             /** @var \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $productCollection */
             $productCollection = $this->getLayer()->getProductCollection();
@@ -82,9 +86,7 @@
         {
             $attribute = $this->getAttributeModel();
             /** @var \MiltonBayer\General\Model\ResourceModel\Fulltext\Collection $productCollection */
-            $productCollection = $this->getLayer()
-                ->getProductCollection();
-            // $optionsFacetedData = $productCollection->getFacetedData($attribute->getAttributeCode());
+            $productCollection = $this->getLayer()->getProductCollection();
 
             $values = $attribute->getSource()->getAllOptions(false);
 

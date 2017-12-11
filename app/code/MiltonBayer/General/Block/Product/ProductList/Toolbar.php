@@ -151,7 +151,10 @@
             $attribute =  $attributeCollection->addFieldToFilter('attribute_code', ['in' => 'manufacturer'])->getFirstItem();
 
             $optionCollectionFactory = $this->optionCollectionFactory->create();
-            $options = $optionCollectionFactory->setStoreFilter()->setAttributeFilter($attribute->getData('attribute_id'));
+            $options = $optionCollectionFactory->setStoreFilter()
+                ->setAttributeFilter($attribute->getData('attribute_id'))
+                ->addFieldToFilter('searchable_option', 1);
+
 
             $this->_availableManufacturers = $options->toOptionArray();
             return $this;
