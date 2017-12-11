@@ -11,7 +11,7 @@
          * @param bool $show_design_a_door
          * @return string
          */
-        public function renderOptions(FilterInterface $filter, array $selected_filters, bool $show_design_a_door)
+        public function renderOptions(FilterInterface $filter, array $selected_filters = [], bool $show_design_a_door = false)
         {
             $this->assign('filterItems', $filter->getItems());
             foreach($selected_filters as $_selected) {
