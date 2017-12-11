@@ -1,17 +1,25 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <referenceContainer name="content">
-            <block class="MiltonBayer\General\Block\Designadoor\Doorlist"
-               name="category.designadoor.doorlist"
-               template="MiltonBayer_General::designadoor/doorlist.phtml"/>
-        </referenceContainer>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+<container name="root">
+        <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main">
+            <container name="columns" htmlTag="div" htmlClass="columns">
+                <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main">
+                    <block class="MiltonBayer\General\Block\Designadoor\Doorlist"
+                       name="category.designadoor.doorlist"
+                       template="MiltonBayer_General::designadoor/doorlist.phtml"/>
 
-        <referenceBlock name="header.container" remove="true" />
-        <referenceBlock name="page.top" remove="true" />
-        <referenceBlock name="footer" remove="true" />
-        <referenceBlock name="absolute_footer" remove="true" />
-        <referenceBlock name="copyright" remove="true" />
-        <referenceBlock name="catalog.compare.sidebar" remove="true" />
-    </body>
-</page>
+                       <block class="Magento\LayeredNavigation\Block\Navigation\Category"
+                          name="category.nav"/>
+                </container>
+            </container>
+        </container>
+</container>
+
+<block class="Magento\Framework\Pricing\Render" name="product.price.render.default">
+    <arguments>
+        <argument name="price_render_handle" xsi:type="string">catalog_product_prices</argument>
+        <argument name="use_link_for_as_low_as" xsi:type="boolean">true</argument>
+    </arguments>
+</block>
+
+</layout>

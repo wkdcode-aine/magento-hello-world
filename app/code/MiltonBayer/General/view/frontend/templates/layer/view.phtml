@@ -14,6 +14,7 @@
  */
 $selectedFilters = $block->getLayer()->getState()->getFilters();
 $is_design_a_door = $block->getIsDesignADoor();
+
 ?>
 
 <?php if ($block->canShowBlock()): ?>
@@ -41,7 +42,7 @@ $is_design_a_door = $block->getIsDesignADoor();
                     if( $is_design_a_door ):
                         echo '<div class="action clear filter-clear js-filter-clear"><span>' . __('Clear All') . '</span></div>';
                     else:
-                        echo '<a href="' . $block->getClearUrl() . '" class="action clear filter-clear ' . ($block->getLayer()->getState()->getFilters() ?: 'disabled') . '"><span>' . __('Clear All') . '</span></a>';
+                        echo '<a href="' . $block->getClearUrl() . '" class="action clear filter-clear ' . (count($selectedFilters) > 0 ?: 'disabled') . '"><span>' . __('Clear All') . '</span></a>';
                     endif;
                 ?>
             </div>

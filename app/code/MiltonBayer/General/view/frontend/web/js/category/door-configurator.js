@@ -24,9 +24,8 @@ define(["jquery", 'category_door_configurator_doorlist'], function($, doorlist){
     // });
 
     return {
-        setupDoorList: function() {
-            console.log("ERM!");
-            doorlist.setup();
+        updateDoorList: function() {
+            doorlist.get();
         }
     };
 });
