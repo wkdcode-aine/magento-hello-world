@@ -60,7 +60,7 @@
 
             foreach ($searchCriteria->getFilterGroups() as $filterGroup) {
                 foreach ($filterGroup->getFilters() as $filter) {
-                    $this->addFieldToFilter($filter->getField(), $filter->getValue(), $filter->getConditionType());
+                    $this->addFieldToFilter($filter->getField(), $filter->getValue());
                 }
             }
 
@@ -80,7 +80,7 @@
          * @param string|array|null $condition
          * @return $this
          */
-        private function addFieldToFilter($field, $condition = null, $type = 'eq')
+        private function addFieldToFilter($field, $condition = null)
         {
             if( !is_array($condition) && strstr($condition, ',') ) {
                 $condition = explode(',', $condition);
