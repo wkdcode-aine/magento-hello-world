@@ -49,7 +49,8 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
             }
         );
 
-        if( $(".js-manufacturer-options").length > 0 && $(".js-manufacturer-options").val() !== '' ) params.manufacturer = $(".js-manufacturer-options").val();
+        if( $(".js-manufacturer-options").length > 0 && $(".js-manufacturer-options").val() !== '' )  params.manufacturer = $(".js-manufacturer-options").val();
+        if( $(".js-view-modes .js-modes-mode.active").length > 0 && $(".js-view-modes .js-modes-mode.active").data('value') != 'grid' )  params.product_list_mode = $(".js-view-modes .js-modes-mode.active").data('value');
 
         params.cat = $("input#category_id").val();
 
@@ -70,6 +71,14 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
                     last_param_str = _params.join("&");
 
                     $(".js-manufacturer-options").bind('change', e => _this.getList());
+                    $(".js-view-modes .js-modes-mode").bind('click', e => {
+                        e.preventDefault();
+
+                        $(".js-view-modes .js-modes-mode").removeClass('active');
+                        $(e.currentTarget).addClass('active');
+
+                        _this.getList();
+                    });
                 }
             });
         }
