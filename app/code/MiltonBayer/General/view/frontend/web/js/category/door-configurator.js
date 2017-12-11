@@ -24,8 +24,8 @@ define(["jquery", 'category_door_configurator_doorlist'], function($, doorlist){
     // });
 
     return {
-        updateDoorList: function() {
-            doorlist.get();
+        initDoorList: function() {
+            doorlist.setup();
         }
     };
 });
