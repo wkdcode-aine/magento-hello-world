@@ -5,6 +5,7 @@ var config = {
             'product_list_toolbar_sorter' : 'MiltonBayer_General/js/product/list/toolbar/sorter',
             'product_view_options_select': 'MiltonBayer_General/js/product/view/options/select',
             'price_filter': 'MiltonBayer_General/js/price_filter',
+            'price_filter_selection': 'MiltonBayer_General/js/price_filter_selection',
             'category_door_configurator': 'MiltonBayer_General/js/category/door-configurator',
             'category_door_configurator_doorlist': 'MiltonBayer_General/js/category/door-configurator/doorlist',
             'category_filter': 'MiltonBayer_General/js/category/filter',
