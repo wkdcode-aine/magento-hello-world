@@ -38,4 +38,6 @@
             </argument>
         </arguments>
     </virtualType>
+
+    <preference for="Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Options" type="MiltonBayer\General\Block\Adminhtml\Attribute\Edit\Options\Options" />
 </config>
