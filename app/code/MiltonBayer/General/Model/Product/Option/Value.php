@@ -1,7 +1,7 @@
 <?php
     namespace MiltonBayer\General\Model\Product\Option;
 
-    class Value extends \Magento\Catalog\Model\Product\Option\Value implements \Magento\Catalog\Api\Data\ProductCustomOptionValuesInterface
+    class Value extends \Magento\Catalog\Model\Product\Option\Value implements \MiltonBayer\General\Api\Data\ProductCustomOptionValuesInterface
     {
         const KEY_CONDITIONAL_ON = 'conditional_on';
 
@@ -34,6 +34,12 @@
             return;
         }
 
+        /**
+         * Set Option type id
+         *
+         * @param int $conditional_on_id
+         * @return int|null
+         */
         public function setConditionalOn($conditional_on_id) {
             $this->_conditional_on = $this->_valueCollectionFactory
                 ->create()
