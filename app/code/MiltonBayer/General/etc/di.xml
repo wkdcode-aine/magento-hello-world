@@ -21,4 +21,8 @@
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="MiltonBayer\General\Block\Product\ListProduct" />
     <preference for="Magento\Catalog\Block\Product\View\Options\Type\Select" type="MiltonBayer\General\Block\Product\View\Options\Type\Select" />
     <preference for="Magento\Catalog\Model\Product\Option\Value" type="MiltonBayer\General\Model\Product\Option\Value" />
+
+    <type name="Magento\Eav\Model\ResourceModel\Entity\Attribute">
+        <plugin name="afterAfterSave" type="MiltonBayer\General\Plugin\Model\ResourceModel\Entity\AttributePlugin" sortOrder="1" />
+    </type>
 </config>
