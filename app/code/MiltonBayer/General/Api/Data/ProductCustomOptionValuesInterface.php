@@ -1,7 +1,7 @@
 <?php
     namespace MiltonBayer\General\Api\Data;
 
-    class ProductCustomOptionValuesInterface extends \Magento\Catalog\Api\Data\ProductCustomOptionValuesInterface
+    interface ProductCustomOptionValuesInterface
     {
         /**
          * Set Option type id
