@@ -13,6 +13,8 @@
     use Magento\Ui\Component\Form\Element\Checkbox;
     use Magento\Ui\Component\Form\Element\Select;
     use Magento\Ui\Component\Form\Field;
+    use Magento\Ui\Component\Form\Fieldset;
+
 
     use MiltonBayer\General\Model\Config\Source\Product\Options\Options as ProductOptionsOptions;
 
@@ -24,6 +26,9 @@
         const FIELD_IS_SHOW_DESIGN_A_DOOR_NAME = 'is_show_design_a_door';
         const FIELD_IS_REQUIRED_DESIGN_A_DOOR_NAME = 'is_required_design_a_door';
         const FIELD_CONDITIONAL_ON_NAME = 'conditional_on';
+
+        const GRID_TYPE_COLOUR_SELECT_NAME = 'colour_select';
+        const FIELD_COLOUR_CODE_OPTION_TITLE = 'colour_code';
 
         /**
          * @param LocatorInterface $locator
@@ -96,7 +101,7 @@
                             'arguments' => [
                                 'data' => [
                                     'config' => [
-                                        'label' => __('Option Titles'),
+                                        'label' => __('Option Title'),
                                         'component' => 'Magento_Catalog/component/static-type-input',
                                         'valueUpdate' => 'input',
                                         'imports' => [
@@ -128,6 +133,99 @@
             }
 
             return $commonContainer;
+        }
+
+        /**
+         * Get config for "Option Type" field
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getTypeFieldConfig($sortOrder)
+        {
+            $types = parent::getTypeFieldConfig($sortOrder);
+
+            $types['arguments']['data']['config']['component'] = 'MiltonBayer_General/js/custom-options-type';
+            $types['arguments']['data']['config']['groupsConfig']['colour_select'] = [
+                'values' => ['colour_radio'],
+                'indexes' => [
+                    static::GRID_TYPE_COLOUR_SELECT_NAME
+                ]
+            ];
+
+            return $types;
+        }
+
+        /**
+         * Get config for the whole grid
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getOptionsGridConfig($sortOrder)
+        {
+            return [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'addButtonLabel' => __('Add Option'),
+                            'componentType' => DynamicRows::NAME,
+                            'component' => 'Magento_Catalog/js/components/dynamic-rows-import-custom-options',
+                            'template' => 'ui/dynamic-rows/templates/collapsible',
+                            'additionalClasses' => 'admin__field-wide',
+                            'deleteProperty' => static::FIELD_IS_DELETE,
+                            'deleteValue' => '1',
+                            'addButton' => false,
+                            'renderDefaultRecord' => false,
+                            'columnsHeader' => false,
+                            'collapsibleHeader' => true,
+                            'sortOrder' => $sortOrder,
+                            'dataProvider' => static::CUSTOM_OPTIONS_LISTING,
+                            'imports' => ['insertData' => '${ $.provider }:${ $.dataProvider }'],
+                        ],
+                    ],
+                ],
+                'children' => [
+                    'record' => [
+                        'arguments' => [
+                            'data' => [
+                                'config' => [
+                                    'headerLabel' => __('New Option'),
+                                    'componentType' => Container::NAME,
+                                    'component' => 'Magento_Ui/js/dynamic-rows/record',
+                                    'positionProvider' => static::CONTAINER_OPTION . '.' . static::FIELD_SORT_ORDER_NAME,
+                                    'isTemplate' => true,
+                                    'is_collection' => true,
+                                ],
+                            ],
+                        ],
+                        'children' => [
+                            static::CONTAINER_OPTION => [
+                                'arguments' => [
+                                    'data' => [
+                                        'config' => [
+                                            'componentType' => Fieldset::NAME,
+                                            'collapsible' => true,
+                                            'label' => null,
+                                            'sortOrder' => 10,
+                                            'opened' => true,
+                                        ],
+                                    ],
+                                ],
+                                'children' => [
+                                    static::FIELD_SORT_ORDER_NAME => $this->getPositionFieldConfig(50),
+                                    static::CONTAINER_COMMON_NAME => $this->getCommonContainerConfig(10),
+                                    static::CONTAINER_TYPE_STATIC_NAME => $this->getStaticTypeContainerConfig(20),
+                                    static::GRID_TYPE_SELECT_NAME => $this->getSelectTypeGridConfig(30),
+                                    static::GRID_TYPE_COLOUR_SELECT_NAME => $this->getColourSelectTypeGridConfig(30),
+                                ]
+                            ],
+                        ]
+                    ]
+                ]
+            ];
         }
 
         /**
@@ -167,7 +265,7 @@
                             'deleteProperty' => static::FIELD_IS_DELETE,
                             'deleteValue' => '1',
                             'renderDefaultRecord' => false,
-                            'sortOrder' => $sortOrder,
+                            'sortOrder' => $sortOrder
                         ],
                     ],
                 ],
@@ -190,14 +288,58 @@
                                 $this->locator->getProduct()->getStoreId() ? $options : []
                             ),
                             static::FIELD_PRICE_NAME => $this->getPriceFieldConfigForSelectType(20),
-                            static::FIELD_PRICE_TYPE_NAME => $this->getPriceTypeFieldConfig(30, ['fit' => true]),
                             static::FIELD_CONDITIONAL_ON_NAME => $this->getConditionalFieldConfig(
                                 35,
                                 $this->locator->getProduct()->getStoreId() == 0 ? false : true
                             ),
-                            static::FIELD_SKU_NAME => $this->getSkuFieldConfig(40),
                             static::FIELD_SORT_ORDER_NAME => $this->getPositionFieldConfig(50),
                             static::FIELD_IS_DELETE => $this->getIsDeleteFieldConfig(60)
+                        ]
+                    ]
+                ]
+            ];
+        }
+
+        /**
+         * Get config for grid for "select" types
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getColourSelectTypeGridConfig($sortOrder)
+        {
+            return [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'addButtonLabel' => __('Add Colour'),
+                            'componentType' => DynamicRows::NAME,
+                            'component' => 'Magento_Ui/js/dynamic-rows/dynamic-rows',
+                            'additionalClasses' => 'admin__field-wide',
+                            'deleteProperty' => static::FIELD_IS_DELETE,
+                            'deleteValue' => '1',
+                            'renderDefaultRecord' => false,
+                            'sortOrder' => $sortOrder,
+                        ],
+                    ],
+                ],
+                'children' => [
+                    'record' => [
+                        'arguments' => [
+                            'data' => [
+                                'config' => [
+                                    'componentType' => Container::NAME,
+                                    'component' => 'Magento_Ui/js/dynamic-rows/record',
+                                    'positionProvider' => static::FIELD_SORT_ORDER_NAME,
+                                    'isTemplate' => true,
+                                    'is_collection' => true,
+                                ],
+                            ],
+                        ],
+                        'children' => [
+                            static::FIELD_TITLE_NAME => $this->getTitleFieldConfig(10),
+                            static::FIELD_PRICE_NAME => $this->getPriceFieldConfig(20)
                         ]
                     ]
                 ]
@@ -225,7 +367,8 @@
                             'dataType' => Text::NAME,
                             'options' => $this->productOptionsOptions->toOptionArray(),
                             'sortOrder' => $sortOrder,
-                            'disabled' => $disabled
+                            'disabled' => $disabled,
+                            'value' => ''
                         ],
                     ],
                 ],

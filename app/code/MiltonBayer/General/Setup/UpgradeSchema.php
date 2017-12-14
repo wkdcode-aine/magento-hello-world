@@ -51,6 +51,20 @@
                 );
             }
 
+            if( version_compare($context->getVersion(), '1.0.5', '<') ) {
+                $connection->addColumn(
+                    $setup->getTable('catalog_product_option_type_value'),
+                    'colour_code',
+                    Table::TYPE_TEXT,
+                    null,
+                    [
+                        'nullable' => true,
+                        'default'  => NULL
+                    ],
+                    'Colour Code'
+                );
+            }
+
             $setup->endSetup();
         }
 
