@@ -1,21 +1,13 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-use Magento\Framework\App\Action\Action;
+    use Magento\Framework\App\Action\Action;
 
-// @codingStandardsIgnoreFile
-
-?>
-<?php
-/**
- * Product list template
- *
- * @var $block \Magento\Catalog\Block\Product\ListProduct
- */
-$_productCollection = $block->getLoadedProductCollection();
-$_helper = $this->helper('Magento\Catalog\Helper\Output');
+    /**
+     * Product list template
+     *
+     * @var $block \Magento\Catalog\Block\Product\ListProduct
+     */
+    $_productCollection = $block->getLoadedProductCollection();
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
 ?>
 <?php if (!$_productCollection->count()): ?>
     <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
