@@ -11,6 +11,7 @@
     use Magento\Ui\Component\DynamicRows;
     use Magento\Ui\Component\Form\Element\DataType\Text;
     use Magento\Ui\Component\Form\Element\Checkbox;
+    use Magento\Ui\Component\Form\Element\Input;
     use Magento\Ui\Component\Form\Element\Select;
     use Magento\Ui\Component\Form\Field;
     use Magento\Ui\Component\Form\Fieldset;
@@ -339,7 +340,10 @@
                         ],
                         'children' => [
                             static::FIELD_TITLE_NAME => $this->getTitleFieldConfig(10),
-                            static::FIELD_PRICE_NAME => $this->getPriceFieldConfig(20)
+                            static::FIELD_PRICE_NAME => $this->getPriceFieldConfig(20),
+                            static::FIELD_COLOUR_CODE_OPTION_TITLE => $this->getColourCodeOptionFieldConfig(35),
+                            static::FIELD_SORT_ORDER_NAME => $this->getPositionFieldConfig(50),
+                            static::FIELD_IS_DELETE => $this->getIsDeleteFieldConfig(60)
                         ]
                     ]
                 ]
@@ -347,7 +351,7 @@
         }
 
         /**
-         * Get config for "SKU" field
+         * Get config for "Conditional On" field
          *
          * @param int $sortOrder
          * @param boolean $disabled
@@ -373,6 +377,33 @@
                     ],
                 ],
             ];
+        }
+
+        /**
+         * Get config for "Colour Code" field
+         *
+         * @param int $sortOrder
+         * @return array
+         * @since 101.0.0
+         */
+        protected function getColourCodeOptionFieldConfig($sortOrder)
+        {
+            $data =  [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Colour Code'),
+                            'componentType' => Field::NAME,
+                            'formElement' => Input::NAME,
+                            'dataScope' => static::FIELD_COLOUR_CODE_OPTION_TITLE,
+                            'dataType' => 'text',
+                            'sortOrder' => $sortOrder,
+                        ],
+                    ],
+                ],
+            ];
+
+            return $data;
         }
 
 
