@@ -86,6 +86,18 @@
         }
 
         /**
+         * Get the default value for the sort
+         * @return string
+         */
+        public function getDefaultOrderAndDirectionValue()
+        {
+            $orders = $this->getAvailableOrders();
+            $keys = array_keys($orders);
+            
+            return $orders[$keys[0]] . "-" . ($this->_direction ?: ProductList::DEFAULT_SORT_DIRECTION);
+        }
+
+        /**
          * Retrieve available Order fields list
          *
          * @return array

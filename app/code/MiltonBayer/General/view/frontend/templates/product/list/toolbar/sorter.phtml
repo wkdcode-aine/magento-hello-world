@@ -1,14 +1,5 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-// @codingStandardsIgnoreFile
-
-?>
-<?php
-/**
  * Product list toolbar
  *
  * @var $block \MiltonBayer\General\Block\Product\ProductList\Toolbar
@@ -16,19 +7,19 @@
 use MiltonBayer\General\Model\Product\ProductList\Toolbar;
 
 $selected = 'selected="selected"';
+$sort_values = $block->getAvailableOrderAndDirections();
+$default_value = $block->getDefaultOrderAndDirectionValue();
 
 ?>
 <div class="toolbar-sorter sorter">
-    <label class="sorter-label" for="sorter"><?= /* @escapeNotVerified */ __('Sort By') ?></label>
-    <select class="js-sort-select sorter-options">
-        <?php foreach ($block->getAvailableOrderAndDirections() as $_key => $_order): ?>
-            <option value="<?= /* @escapeNotVerified */ $_key ?>"
-                <?php if ($block->isOrderDirectionCurrent($_key)): ?>
-                    selected="selected"
-                <?php endif; ?>
-                >
-                <?= $block->escapeHtml(__($_order)) ?>
-            </option>
-        <?php endforeach; ?>
+    <label class="sorter-label" for="sorter"><?= __('Sort by:') ?></label>
+    <select class="js-sort-select sorter-options" data-default="<?= $default_value; ?>">
+        <?php
+            foreach ($sort_values as $_key => $_order) {
+                echo '<option value="' . $_key . '" ' . ($block->isOrderDirectionCurrent($_key) ? $selected : '') . '>';
+                    echo $block->escapeHtml(__($_order));
+                echo '</option>';
+            }
+        ?>
     </select>
 </div>

@@ -51,6 +51,14 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
 
         if( $(".js-manufacturer-options").length > 0 && $(".js-manufacturer-options").val() !== '' )  params.manufacturer = $(".js-manufacturer-options").val();
         if( $(".js-view-modes .js-modes-mode.active").length > 0 && $(".js-view-modes .js-modes-mode.active").data('value') != $(".js-view-modes").data('default') )  params.product_list_mode = $(".js-view-modes .js-modes-mode.active").data('value');
+        if( $(".js-sort-select").length > 0 && $(".js-sort-select").val() !== $(".js-sort-select").data('default') ) {
+            let selected = $(".js-sort-select").val();
+
+            let values = selected.split('-');
+
+            params.product_list_order = values[0];
+            params.product_list_dir = values[1];
+        }
 
         params.cat = $("input#category_id").val();
 
@@ -70,7 +78,9 @@ define(["jquery", 'price_filter_selection'], function($, priceSelect){
 
                     last_param_str = _params.join("&");
 
-                    $(".js-manufacturer-options").bind('change', e => _this.getList());
+                    $(".js-manufacturer-options").unbind('change');
+                    $(".js-view-modes .js-modes-mode").unbind('click');
+                    $(".js-manufacturer-options, .js-sort-select").bind('change', e => _this.getList());
                     $(".js-view-modes .js-modes-mode").bind('click', e => {
                         e.preventDefault();
 
