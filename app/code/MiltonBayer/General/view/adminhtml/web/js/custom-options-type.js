@@ -32,7 +32,7 @@ define([
                         case 'container_type_static':
                         case 'values':
                         // Module specific code
-                        case 'colour_select':
+                        case 'colours':
                         // end module specific code
                             template = 'ns=' + this.ns +
                                 ', dataScope=' + this.parentScope +

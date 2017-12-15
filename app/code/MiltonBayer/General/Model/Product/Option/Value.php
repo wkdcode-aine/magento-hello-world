@@ -4,6 +4,7 @@
     class Value extends \Magento\Catalog\Model\Product\Option\Value implements \MiltonBayer\General\Api\Data\ProductCustomOptionValuesInterface
     {
         const KEY_CONDITIONAL_ON = 'conditional_on';
+        const KEY_COLOUR_CODE = 'colour_code';
 
         /**
          * @var Value
@@ -48,6 +49,27 @@
                     ['eq' => $conditional_on_id]
                 )
                 ->getFirstItem();
+        }
+
+        /**
+         * Get option colour code
+         *
+         * @return string
+         * @codeCoverageIgnoreStart
+         */
+        public function getColourCode()
+        {
+            return $this->_getData(self::KEY_COLOUR_CODE);
+        }
+
+        /**
+         * Set Option colour code
+         *
+         * @param string $colour_code
+         * @return string|null
+         */
+        public function setColourCode($colour_code) {
+            return $this->setData(self::KEY_COLOUR_CODE, $colour_code);
         }
 
         /*

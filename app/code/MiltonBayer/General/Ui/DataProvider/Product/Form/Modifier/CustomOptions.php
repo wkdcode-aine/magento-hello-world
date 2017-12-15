@@ -28,7 +28,7 @@
         const FIELD_IS_REQUIRED_DESIGN_A_DOOR_NAME = 'is_required_design_a_door';
         const FIELD_CONDITIONAL_ON_NAME = 'conditional_on';
 
-        const GRID_TYPE_COLOUR_SELECT_NAME = 'colour_select';
+        const GRID_TYPE_COLOURS_NAME = 'colours';
         const FIELD_COLOUR_CODE_OPTION_TITLE = 'colour_code';
 
         /**
@@ -56,6 +56,48 @@
             $this->productOptionsOptions = $productOptionsOptions;
             $this->urlBuilder = $urlBuilder;
             $this->arrayManager = $arrayManager;
+        }
+
+        /**
+         * {@inheritdoc}
+         * @since 101.0.0
+         */
+        public function modifyData(array $data)
+        {
+            $options = [];
+            $productOptions = $this->locator->getProduct()->getOptions() ?: [];
+
+            /** @var \Magento\Catalog\Model\Product\Option $option */
+            foreach ($productOptions as $index => $option) {
+                $optionData = $option->getData();
+                $optionData[static::FIELD_IS_USE_DEFAULT] = !$option->getData(static::FIELD_STORE_TITLE_NAME);
+                $options[$index] = $this->formatPriceByPath(static::FIELD_PRICE_NAME, $optionData);
+                $values = $option->getValues() ?: [];
+                $is_colour = $option->hasValues() == false && $option->hasColours() == true;
+
+                foreach ($values as $value) {
+                    $value->setData(static::FIELD_IS_USE_DEFAULT, !$value->getData(static::FIELD_STORE_TITLE_NAME));
+                }
+                /** @var \Magento\Catalog\Model\Product\Option $value */
+                foreach ($values as $value) {
+                    $options[$index][($is_colour ? static::GRID_TYPE_COLOURS_NAME : static::GRID_TYPE_SELECT_NAME)][] = $this->formatPriceByPath(
+                        static::FIELD_PRICE_NAME,
+                        $value->getData()
+                    );
+                }
+            }
+
+            return array_replace_recursive(
+                $data,
+                [
+                    $this->locator->getProduct()->getId() => [
+                        static::DATA_SOURCE_DEFAULT => [
+                            static::FIELD_ENABLE => 1,
+                            static::GRID_OPTIONS_NAME => $options
+                        ]
+                    ]
+                ]
+            );
         }
 
         /**
@@ -148,10 +190,10 @@
             $types = parent::getTypeFieldConfig($sortOrder);
 
             $types['arguments']['data']['config']['component'] = 'MiltonBayer_General/js/custom-options-type';
-            $types['arguments']['data']['config']['groupsConfig']['colour_select'] = [
-                'values' => ['colour_radio'],
+            $types['arguments']['data']['config']['groupsConfig']['colours'] = [
+                'values' => ['colour_swatch'],
                 'indexes' => [
-                    static::GRID_TYPE_COLOUR_SELECT_NAME
+                    static::GRID_TYPE_COLOURS_NAME
                 ]
             ];
 
@@ -220,7 +262,7 @@
                                     static::CONTAINER_COMMON_NAME => $this->getCommonContainerConfig(10),
                                     static::CONTAINER_TYPE_STATIC_NAME => $this->getStaticTypeContainerConfig(20),
                                     static::GRID_TYPE_SELECT_NAME => $this->getSelectTypeGridConfig(30),
-                                    static::GRID_TYPE_COLOUR_SELECT_NAME => $this->getColourSelectTypeGridConfig(30),
+                                    static::GRID_TYPE_COLOURS_NAME => $this->getColourSelectTypeGridConfig(30),
                                 ]
                             ],
                         ]
@@ -289,6 +331,7 @@
                                 $this->locator->getProduct()->getStoreId() ? $options : []
                             ),
                             static::FIELD_PRICE_NAME => $this->getPriceFieldConfigForSelectType(20),
+                            static::FIELD_PRICE_TYPE_NAME => $this->getPriceTypeFieldConfig(30, ['fit' => true]),
                             static::FIELD_CONDITIONAL_ON_NAME => $this->getConditionalFieldConfig(
                                 35,
                                 $this->locator->getProduct()->getStoreId() == 0 ? false : true
@@ -341,6 +384,7 @@
                         'children' => [
                             static::FIELD_TITLE_NAME => $this->getTitleFieldConfig(10),
                             static::FIELD_PRICE_NAME => $this->getPriceFieldConfig(20),
+                            static::FIELD_PRICE_TYPE_NAME => $this->getPriceTypeFieldConfig(30, ['fit' => true]),
                             static::FIELD_COLOUR_CODE_OPTION_TITLE => $this->getColourCodeOptionFieldConfig(35),
                             static::FIELD_SORT_ORDER_NAME => $this->getPositionFieldConfig(50),
                             static::FIELD_IS_DELETE => $this->getIsDeleteFieldConfig(60)

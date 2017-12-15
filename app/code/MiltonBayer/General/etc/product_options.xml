@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_options.xsd">
-    <option name="colour_select" label="Colour" renderer="MiltonBayer\General\Block\Adminhtml\Product\Edit\Tab\Options\Type\ColourSelect">
-        <inputType name="colour_radio" label="Colour Swatch" />
+    <option name="colours" label="Colour" renderer="MiltonBayer\General\Block\Adminhtml\Product\Edit\Tab\Options\Type\ColourSelect">
+        <inputType name="colour_swatch" label="Colour Swatch" />
     </option>
 </config>
