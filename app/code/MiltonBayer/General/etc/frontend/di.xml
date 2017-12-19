@@ -12,5 +12,6 @@
         </arguments>
     </virtualType>
 
+    <preference for="Magento\Catalog\Block\Product\View\Options" type="MiltonBayer\General\Block\Product\View\Options" />
     <preference for="MiltonBayer\General\Block\Designadoor\DoorfilterInterface" type="MiltonBayer\General\Block\Designadoor\Doorfilter" />
 </config>
