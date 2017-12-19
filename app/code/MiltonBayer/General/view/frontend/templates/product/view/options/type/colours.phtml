@@ -1,0 +1,38 @@
+<?php
+    /* @var $block \MiltonBayer\General\Block\Product\View\Options */
+    $_option = $block->getOption();
+    $class = ($_option->getIsRequire()) ? ' required' : '';
+?>
+<div class="field<?= $class ?> js-colours-wrapper">
+    <label class="label" for="select_<?= $_option->getId() ?>">
+        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <?= $block->getValuesHtml(); ?>
+    </div>
+</div>
+
+<style>
+    .admin__field-option.colour-swatch {
+        width: 50px;
+        height: 50px;
+        box-shadow: 1px 1px 2px;
+    }
+
+    .admin__field-option.colour-swatch.active {
+        border: 2px solid #fff;
+        box-shadow: 2px 2px 5px;
+    }
+
+    .admin__field-option.colour-swatch input {
+        display: none;
+    }
+</style>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "product_view_options_colours": {}
+        }
+    }
+</script>

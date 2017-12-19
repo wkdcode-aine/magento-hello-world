@@ -1,33 +1,25 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
+/* @var $block \MiltonBayer\General\Block\Product\View\Options */
+$_options = $block->decorateArray($block->getOptions());
+$_productId = $block->getProduct()->getId();
 
-// @codingStandardsIgnoreFile
-
-/* @var $block \Magento\Catalog\Block\Product\View\Options */
+if (count($_options)) {
 ?>
-
-<?php $_options = $block->decorateArray($block->getOptions()) ?>
-<?php $_productId = $block->getProduct()->getId() ?>
-<?php if (count($_options)):?>
-<script type="text/x-magento-init">
-    {
-        "#product_addtocart_form": {
-            "priceOptions": {
-                "optionConfig": <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>,
-                "controlContainer": ".field",
-                "priceHolderSelector": "[data-product-id='<?= $block->escapeHtml($_productId) ?>'][data-role=priceBox]"
+    <script type="text/x-magento-init">
+        {
+            "#product_addtocart_form": {
+                "priceOptions": {
+                    "optionConfig": <?= $block->getJsonConfig() ?>,
+                    "controlContainer": ".field",
+                    "priceHolderSelector": "[data-product-id='<?= $block->escapeHtml($_productId) ?>'][data-role=priceBox]"
+                }
             }
+        }
+    </script>
+<?php
+    foreach ($_options as $_option) {
+        if( $_option->getData('is_show_product_page') ) {
+            echo $block->getOptionHtml($_option);
         }
     }
-</script>
-    <?php
-        foreach ($_options as $_option) {
-            if( $_option->getData('is_show_product_page') ) {
-                echo $block->getOptionHtml($_option);
-            }
-        }
-    ?>
-<?php endif; ?>
+}
