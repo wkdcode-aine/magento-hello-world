@@ -74,7 +74,6 @@
                 $options[$index] = $this->formatPriceByPath(static::FIELD_PRICE_NAME, $optionData);
                 $values = $option->getValues() ?: [];
                 $is_colour = $option->hasValues() == false && $option->hasColours() == true;
-
                 foreach ($values as $value) {
                     $value->setData(static::FIELD_IS_USE_DEFAULT, !$value->getData(static::FIELD_STORE_TITLE_NAME));
                 }
@@ -432,22 +431,22 @@
          */
         protected function getColourCodeOptionFieldConfig($sortOrder)
         {
-            $data =  [
+            return [
                 'arguments' => [
                     'data' => [
                         'config' => [
                             'label' => __('Colour Code'),
                             'componentType' => Field::NAME,
                             'formElement' => Input::NAME,
+                            'component' => 'MiltonBayer_General/js/jscolor-input',
+                            'elementTmpl' => 'MiltonBayer_General/form/element/jscolor',
                             'dataScope' => static::FIELD_COLOUR_CODE_OPTION_TITLE,
-                            'dataType' => 'text',
-                            'sortOrder' => $sortOrder,
+                            'dataType' => Text::NAME,
+                            'sortOrder' => $sortOrder
                         ],
-                    ],
+                    ]
                 ],
             ];
-
-            return $data;
         }
 
 
