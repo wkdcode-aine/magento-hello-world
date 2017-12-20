@@ -65,6 +65,54 @@
                 );
             }
 
+            if( version_compare($context->getVersion(), '1.0.6', '<') ) {
+                $table = $connection
+                    ->newTable($setup->getTable('crosssell_category_product'))
+                    ->addColumn(
+                        'crosssell_category_product_id',
+                        \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                        null,
+                        ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+                        'Greeting ID'
+                    )
+                    ->addColumn(
+                        'category_id',
+                        \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                        null,
+                        ['unsigned' => true, 'nullable' => false],
+                        'Greeting ID'
+                    )
+                    ->addColumn(
+                        'product_id',
+                        \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                        null,
+                        ['unsigned' => true, 'nullable' => false],
+                        'Message'
+                    )
+                    ->addColumn(
+                        'sort_order',
+                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        255,
+                        ['nullable' => false, 'default' => ''],
+                        'Message'
+                    )
+                    ->addForeignKey(
+                          $setup->getFkName('crosssell_category_product_id', 'category_id', 'catalog_category_entity', 'entity_id'),
+                          'category_id',
+                          $setup->getTable('catalog_category_entity'),
+                          'entity_id',
+                          \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+                    )
+                    ->addForeignKey(
+                          $setup->getFkName('crosssell_category_product_id', 'product_id', 'catalog_product_entity', 'entity_id'),
+                          'product_id',
+                          $setup->getTable('catalog_product_entity'),
+                          'entity_id',
+                          \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+                    )->setComment("Featured  table");
+                  $connection->createTable($table);
+            }
+
             $setup->endSetup();
         }
 

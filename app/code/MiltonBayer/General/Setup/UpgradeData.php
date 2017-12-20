@@ -41,6 +41,35 @@ class UpgradeData implements UpgradeDataInterface
                 ]);
         }
 
+        if( version_compare($context->getVersion(), '1.0.6', '<') ) {
+            $eavSetup->addAttribute(Category::ENTITY,
+               'show_crosssell_carousel', [
+                    'type'     => 'int',
+                    'label'    => 'Show Cross Sell Carousel?',
+                    'input'    => 'text',
+                    'visible'  => true,
+                    'default'  => 0,
+                    'sort_order' => 0,
+                    'required' => false,
+                    'global'   => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                    'group'    => 'Cross Sell',
+                    'source_model' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean'
+                ]);
+
+            $eavSetup->addAttribute(Category::ENTITY,
+               'crosssell_carousel_title', [
+                    'type'     => 'varchar',
+                    'label'    => 'Cross Sell Carousel Title',
+                    'input'    => 'text',
+                    'visible'  => true,
+                    'default'  => '',
+                    'sort_order' => 1,
+                    'required' => false,
+                    'global'   => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                    'group'    => 'Cross Sell'
+                ]);
+        }
+
         $setup->endSetup();
     }
 }
