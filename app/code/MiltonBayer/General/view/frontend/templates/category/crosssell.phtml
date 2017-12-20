@@ -1,0 +1,32 @@
+<?php
+    /* @var $block \Magento\Catalog\Block\Product\ListProduct */
+
+    if( $block->canShowCrosssell() ) {
+        $_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+?>
+        <div class="cross-sell">
+            <h3><?= $block->getCarouselTitle() ?></h3>
+            <ul>
+                <?php
+                    foreach($block->getCarouselProducts() as $_product) {
+                        $productImage = $block->getImage($_product, 'category_page_grid');
+                        $short_description = $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description');
+                        $short_description = (strlen($short_description) > 156) ? substr($short_description, 0, 156) . '...' : $short_description;
+
+                        echo '<li>';
+                            echo $productImage->toHtml();
+                            echo '<div>';
+                                echo '<div>' . $_helper->productAttribute($_product, $_product->getListingTitle(), 'listing_title') . '</div>';
+                                echo '<div>' . $short_description . '</div>';
+                                echo '<div class="price">' . __('FROM ONLY') . $block->getProductPriceHtml($_product, \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE) . '</div>';
+                                echo '<div><a href="' . $_product->getProductUrl(true) . '">' . __('More Info') . '<span class="caret caret-right"></span></a></div>';
+                            echo '</div>';
+                        echo '</li>';
+                    }
+                ?>
+            </ul>
+        </div>
+<?php
+    }
+?>
