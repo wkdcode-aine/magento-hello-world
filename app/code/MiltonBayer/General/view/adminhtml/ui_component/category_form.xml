@@ -28,7 +28,7 @@
 
     <fieldset name="crosssell" sortOrder="80">
         <settings>
-            <collapsible>false</collapsible>
+            <collapsible>true</collapsible>
             <label translate="true">Cross Sell</label>
         </settings>
         <field name="show_crosssell_carousel" sortOrder="10" formElement="checkbox">
@@ -65,7 +65,7 @@
         </field>
         <container name="crosssell_products_container" sortOrder="30">
             <htmlContent name="crosssell_products_html_content">
-                <block name="assign_crosssell_products" class="MiltonBayer\General\Block\Adminhtml\Category\AssignCrosssellProducts"/>
+                <block name="assign_crosssell_products" class="MiltonBayer\General\Block\Adminhtml\Category\AssignCrosssellProducts" />
             </htmlContent>
         </container>
     </fieldset>

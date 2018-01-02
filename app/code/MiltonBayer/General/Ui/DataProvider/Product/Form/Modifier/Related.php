@@ -9,7 +9,7 @@
          */
         public function modifyMeta(array $meta)
         {
-            return $meta;
+            return parent::modifyMeta($meta);
         }
 
         /**
@@ -18,6 +18,6 @@
          */
         public function modifyData(array $data)
         {
-            return $data;
+            return parent::modifyData($data);
         }
     }

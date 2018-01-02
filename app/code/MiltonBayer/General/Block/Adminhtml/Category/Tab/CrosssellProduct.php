@@ -58,13 +58,11 @@
          */
         protected function _prepareCollection()
         {
-            $collection = $this->_productFactory->create()->getCollection()->addAttributeToSelect(
-                'name'
-            )->addAttributeToSelect(
-                'sku'
-            )->addAttributeToSelect(
+            $collection = $this->_productFactory->create()->getCollection()->addAttributeToSelect([
+                'name',
+                'sku',
                 'price'
-            )->joinField(
+            ])->joinField(
                 'product_id',
                 'crosssell_category_product',
                 'product_id',
@@ -87,19 +85,17 @@
          */
         protected function _prepareColumns()
         {
-            if (!$this->getCategory()->getProductsReadonly()) {
-                $this->addColumn(
-                    'in_category',
-                    [
-                        'type' => 'checkbox',
-                        'name' => 'in_category',
-                        'values' => $this->_getSelectedProducts(),
-                        'index' => 'entity_id',
-                        'header_css_class' => 'col-select col-massaction',
-                        'column_css_class' => 'col-select col-massaction'
-                    ]
-                );
-            }
+            $this->addColumn(
+                'in_category',
+                [
+                    'type' => 'checkbox',
+                    'name' => 'in_category',
+                    'values' => $this->_getSelectedProducts(),
+                    'index' => 'entity_id',
+                    'header_css_class' => 'col-select col-massaction',
+                    'column_css_class' => 'col-select col-massaction'
+                ]
+            );
             $this->addColumn(
                 'entity_id',
                 [
@@ -124,17 +120,48 @@
                     'index' => 'price'
                 ]
             );
-            $this->addColumn(
-                'position',
-                [
-                    'header' => __('Position'),
-                    'type' => 'number',
-                    'index' => 'position',
-                    'editable' => !$this->getCategory()->getProductsReadonly()
-                ]
-            );
+            // $this->addColumn(
+            //     'position',
+            //     [
+            //         'header' => __('Position'),
+            //         'type' => 'number',
+            //         'index' => 'position',
+            //         'editable' => true
+            //     ]
+            // );
 
             return parent::_prepareColumns();
+        }
+
+        /**
+         * Rerieve grid URL
+         *
+         * @return string
+         */
+        public function getGridUrl()
+        {
+            return $this->_getData(
+                'grid_url'
+            ) ? $this->_getData(
+                'grid_url'
+            ) : $this->getUrl(
+                'catalog/*/upsellGrid',
+                ['_current' => true]
+            );
+        }
+
+        /**
+         * Retrieve upsell products
+         *
+         * @return array
+         */
+        public function getSelectedUpsellProducts()
+        {
+            $products = [];
+            // foreach ($this->_coreRegistry->registry('current_product')->getUpSellProducts() as $product) {
+            //     $products[$product->getId()] = ['position' => $product->getPosition()];
+            // }
+            return $products;
         }
 
         /**

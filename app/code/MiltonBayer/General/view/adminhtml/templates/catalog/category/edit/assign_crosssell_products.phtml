@@ -1,19 +1,20 @@
 <?php
 /** @var \MiltonBayer\General\Block\Adminhtml\Category\AssignCrosssellProducts $block */
 
-/** @var \Magento\Catalog\Block\Adminhtml\Category\Tab\Product $blockGrid */
-$blockGrid = $block->getBlockGrid();
+/** @var \MiltonBayer\General\Block\Adminhtml\Category\Tab\CrosssellProduct $blockGrid */
+//$blockGrid = $block->getBlockGrid();
 ?>
-<?= $block->getGridHtml() ?>
+<?php //echo $block->getGridHtml() ?>
+<button data-bind="css: buttonClasses, attr: {'data-index': index}, click: action, disable: disabled">Add Product</button>
 <input type="hidden" name="crosssell_category_products" id="in_crosssell_category_products" data-form-part="category_form" value="" />
-<!-- <script type="text/x-magento-init">
+<script type="text/x-magento-init">
     {
         "*": {
-            "Magento_Catalog/catalog/category/assign-crosssell-products": {
+            "MiltonBayer_General/catalog/category": {
             }
         }
     }
-</script> -->
+</script>
 <!-- @todo remove when "UI components" will support such initialization -->
 <script>
     require('mage/apply/main').apply();
